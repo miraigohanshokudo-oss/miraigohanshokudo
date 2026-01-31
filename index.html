@@ -5,137 +5,186 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>みらいごはん食堂 | 防府市の地域・子ども食堂</title>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* 基本設定 */
-        body { 
-            font-family: 'Zen Maru Gothic', sans-serif; 
-            line-height: 1.8; 
-            margin: 0; 
-            color: #444; 
-            background-color: #fffaf0; 
-        }
+        body { font-family: 'Zen Maru Gothic', sans-serif; line-height: 1.8; margin: 0; color: #444; background-color: #fffaf0; overflow-x: hidden; }
+        header { background-color: #FF9F43; color: white; padding: 3rem 1rem; text-align: center; }
+        .hero { background: #FF9F43; padding: 5rem 1rem; text-align: center; color: white; }
+        .container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+        section { background: white; margin-bottom: 2rem; padding: 2rem; border-radius: 12px; border: 2px solid #ffeaa7; }
+        h3 { color: #d35400; border-left: 5px solid #FF9F43; padding-left: 1rem; }
+        .contact-box { text-align: center; background: #fff4e6; padding: 2rem; border-radius: 12px; }
         
-        /* ヘッダー */
-        header { 
-            background-color: #FF9F43; 
-            color: white; 
-            padding: 4rem 1rem; 
-            text-align: center; 
-        }
-        
-        /* コンテナ */
-        .container { 
-            max-width: 800px; 
-            margin: 0 auto; 
-            padding: 2rem 1rem; 
-        }
-        
-        /* セクション（白い箱） */
-        section { 
-            background: white; 
-            margin-bottom: 2rem; 
-            padding: 2rem; 
-            border-radius: 12px; 
-            border: 2px solid #ffeaa7; 
-        }
-        
-        /* 見出し */
-        h3 { 
-            color: #d35400; 
-            border-left: 5px solid #FF9F43; 
-            padding-left: 1rem; 
-            margin-top: 0;
-        }
-        
-        /* ボタン類のデザイン */
-        .btn-common {
+        /* Instagramボタン */
+        .btn-insta { display: inline-block; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; padding: 0.8rem 2rem; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 1rem; transition: transform 0.3s; }
+        .btn-insta:hover { transform: scale(1.05); }
+
+        /* LINEオープンチャットボタン */
+        .btn-line {
             display: inline-block;
-            padding: 0.8rem 2rem;
+            background-color: #06C755; /* LINEのブランドカラー */
+            color: white;
+            padding: 1rem 3rem;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
             margin-top: 1rem;
-            color: white;
-            transition: opacity 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
-        .btn-common:hover { opacity: 0.8; }
+        .btn-line:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            background-color: #05b34c;
+        }
 
-        .btn-map { background-color: #3498db; }   /* 地図ボタン：青 */
-        .btn-line { background-color: #06C755; }  /* LINEボタン：緑 */
-        .btn-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); } /* インスタ */
-
-        /* リスト・Q&A */
-        ul.support-list { list-style: none; padding: 0; margin-top: 0.5rem; }
-        ul.support-list li::before { content: "🧡"; margin-right: 8px; }
+        /* 箇条書きリスト */
+        ul.support-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            display: inline-block;
+        }
+        ul.support-list li {
+            margin-bottom: 0.5rem;
+        }
+        ul.support-list li::before {
+            content: "🧡";
+            margin-right: 8px;
+        }
         
+        /* Q&Aのデザイン */
         .qa-box { text-align: left; margin-top: 1.5rem; }
         .qa-q { font-weight: bold; color: #d35400; margin-bottom: 0.5rem; }
         .qa-a { margin-bottom: 1.5rem; padding-left: 1rem; border-left: 3px solid #ffeaa7; }
 
-        /* フッター */
         footer { background-color: #FF9F43; color: white; text-align: center; padding: 2rem; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div style="margin-bottom: 1rem;">
-            <img src="logo.png" alt="みらいごはん食堂ロゴ" 
-                 style="width: 150px; height: auto; border-radius: 50%; background: white; padding: 10px;">
+<header style="padding-top: 4rem;"> 
+    <div data-aos="fade-down" data-aos-duration="1500" style="margin-bottom: 2rem;">
+        <img src="logo.png" alt="みらいごはん食堂 ロゴ" 
+             style="width: 150px; height: auto; 
+                    border-radius: 50%;
+                    padding: 10px;
+                    background-color: white;
+                    box-shadow: 0 0 15px rgba(255,255,255,0.8);">
+    </div>
+    
+    <h1 data-aos="fade-up" data-aos-delay="500" style="margin-top: 0;">みらいごはん食堂</h1>
+    <p data-aos="fade-up" data-aos-delay="800">～だれでも来られる、地域みんなの居場所～</p>
+</header>
+
+<div class="container">
+    <section data-aos="fade-up">
+        <h3>みらいごはん食堂について</h3>
+        <p>「みらいごはん食堂」は、山口県防府市で活動する子ども食堂・地域食堂です。世代を超えてつながれる「第3の居場所」を目指しています。</p>
+    </section>
+
+    <section data-aos="fade-up">
+        <h3>開催情報</h3>
+        <p><strong>日時：</strong>毎月 第3日曜日 お昼（11:30〜13:30頃）</p>
+        <p><strong>場所：</strong>ケアハウスあいおい苑 1階 デイサービス実施スペース（防府市佐野152-1）</p>
+        <p><strong>駐車場：</strong>あり<br>
+        <span style="font-size: 0.9rem;">※施設の敷地内、または敷地前の駐車場をご利用いただけます。</span></p>
+        <p><strong>参加費：</strong>子ども無料 / 大人 250円</p>
+        
+        <div style="margin-top: 1rem; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 2px solid #ffeaa7;">
+            <iframe 
+                src="https://maps.google.com/maps?q=山口県防府市佐野152-1&output=embed" 
+                style="border:0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                allowfullscreen="" 
+                loading="lazy"
+                title="地図">
+            </iframe>
         </div>
-        <h1 style="margin: 0;">みらいごはん食堂</h1>
-        <p>～だれでも来られる、地域みんなの居場所～</p>
-    </header>
+    </section>
 
-    <div class="container">
-        <section>
-            <h3>みらいごはん食堂について</h3>
-            <p>「みらいごはん食堂」は、山口県防府市で活動する子ども食堂・地域食堂です。世代を超えてつながれる「第3の居場所」を目指しています。</p>
-        </section>
+    <section data-aos="fade-up" style="text-align: center; border-color: #06C755;">
+        <h3 style="color: #06C755; border-color: #06C755;">参加申し込みについて</h3>
+        <p>開催の案内と参加募集は、LINEオープンチャットにて行います。<br>ぜひ登録してお待ちください！</p>
+        
+        <a href="https://line.me/ti/g2/XtKt8VAP887JrKY9S0ERs1GesUh3lb5yctO5XA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" class="btn-line" target="_blank">LINEオープンチャットに参加</a>
+        
+        <div style="margin-top: 1.5rem; text-align: left; background: #fff0f0; padding: 1rem; border-radius: 8px;">
+            <p style="color: #c0392b; font-weight: bold; margin-bottom: 0.5rem;">⚠️ アレルギー対応について</p>
+            <p style="font-size: 0.95rem; margin: 0;">
+                当食堂では、食物アレルギー対応の食事提供は行っておりません。<br>
+                誤食事故防止のため、誠に恐れ入りますが、ご理解とご自身でのご判断をお願いいたします。
+            </p>
+        </div>
+    </section>
 
-        <section>
-            <h3>開催情報</h3>
-            <p><strong>日時：</strong>毎月 第3日曜日 お昼（11:30〜13:30頃）</p>
-            <p><strong>場所：</strong>ケアハウスあいおい苑 1階 デイサービス実施スペース（防府市佐野152-1）</p>
-            <p><strong>駐車場：</strong>あり<br><span style="font-size:0.9rem">※施設の敷地内、または敷地前の駐車場をご利用いただけます。</span></p>
-            <p><strong>参加費：</strong>子ども無料 / 大人 250円</p>
+    <section data-aos="fade-up">
+        <h3>よくある質問</h3>
+        <div class="qa-box">
+            <div class="qa-q">Q. 子どもだけで行ってもいいですか？</div>
+            <div class="qa-a">
+                はい、お子様だけでの参加も大歓迎です！スタッフが見守りますので安心してお越しください。<br>
+                もちろん、<strong>親御さんのご参加も大歓迎です！</strong>ぜひ親子で、地域の方々と一緒に温かいごはんを食べに来てください。
+            </div>
             
-            <div style="text-align: center; margin-top: 1.5rem;">
-                <a href="https://www.google.com/maps/search/?api=1&query=ケアハウスあいおい苑+山口県防府市佐野152-1" 
-                   target="_blank" class="btn-common btn-map">
-                   📍 Googleマップで場所を見る
-                </a>
+            <div class="qa-q">Q. 駐車場はありますか？</div>
+            <div class="qa-a">
+                はい、施設の敷地内および敷地前の駐車場をご利用いただけます。
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section style="text-align: center; border-color: #06C755;">
-            <h3 style="color: #06C755; border-color: #06C755;">参加申し込みについて</h3>
-            <p>開催の案内と参加募集は、LINEオープンチャットにて行います。<br>ぜひ登録してお待ちください！</p>
-            
-            <a href="https://line.me/ti/g2/XtKt8VAP887JrKY9S0ERs1GesUh3lb5yctO5XA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" 
-               class="btn-common btn-line" target="_blank">LINEオープンチャットに参加</a>
-            
-            <div style="margin-top: 1.5rem; text-align: left; background: #fff0f0; padding: 1rem; border-radius: 8px;">
-                <p style="color: #c0392b; font-weight: bold; margin-bottom: 0.5rem;">⚠️ アレルギー対応について</p>
-                <p style="font-size: 0.95rem; margin: 0;">当食堂では、食物アレルギー対応の食事提供は行っておりません。<br>誤食事故防止のため、誠に恐れ入りますが、ご理解とご自身でのご判断をお願いいたします。</p>
-            </div>
-        </section>
+    <section data-aos="fade-up">
+        <h3>応援してくれる方へ</h3>
+        
+        <div style="margin-bottom: 2rem;">
+            <h4 style="color: #d35400; font-size: 1.2rem;">🤝 ボランティア募集</h4>
+            <p>調理、配膳、受付、子どもの遊び相手など、できる範囲でお手伝いいただける方を募集しています。<br>学生さんからシニアの方まで大歓迎です！</p>
+        </div>
 
-        <section>
-            <h3>よくある質問</h3>
-            <div class="qa-box">
-                <div class="qa-q">Q. 子どもだけで行ってもいいですか？</div>
-                <div class="qa-a">はい、お子様だけでの参加も大歓迎です！スタッフが見守りますので安心してお越しください。<br>もちろん、<strong>親御さんのご参加も大歓迎です！</strong></div>
-                <div class="qa-q">Q. 駐車場はありますか？</div>
-                <div class="qa-a">はい、施設の敷地内および敷地前の駐車場をご利用いただけます。</div>
+        <div>
+            <h4 style="color: #d35400; font-size: 1.2rem;">🥕 食材のご寄付（フードドライブ）</h4>
+            <p>ご家庭で余っている食材や、おすそ分けがあれば大変助かります。</p>
+            <div style="background: #fff9c4; padding: 1rem; border-radius: 8px; display: inline-block; text-align: left;">
+                <strong>【現在受付中のもの】</strong>
+                <ul class="support-list">
+                    <li>お米、麺類</li>
+                    <li>缶詰、レトルト食品</li>
+                    <li>お菓子、ジュース</li>
+                    <li>日持ちする野菜（玉ねぎ・じゃがいも等）</li>
+                </ul>
             </div>
-        </section>
+            <p style="font-size: 0.9rem; margin-top: 0.5rem;">※賞味期限切れ、開封済みのものはご遠慮ください。</p>
+        </div>
+        
+        <hr style="border: 0; border-top: 1px dashed #FF9F43; margin: 2rem 0;">
+        
+        <p style="text-align: center;">
+            ボランティア・寄付のご連絡は<br>
+            <strong>InstagramのDM</strong> または <strong>メール</strong> にてお待ちしています。
+        </p>
+    </section>
 
-        <section>
-            <h3>応援してくれる方へ</h3>
-            <div style="margin-bottom: 2rem;">
-                <h4 style="color: #d35400;">🤝 ボランティア募集</h4>
-                <p>調理、配膳、受付、子どもの遊び相手など、できる範囲でお手伝いいただける方を募集しています。</p>
-            </div>
-            <div>
-                <h4 style="color: #d35400;">🥕 食材のご寄付（フードドライブ
+    <section class="contact-box" data-aos="fade-up">
+        <h3>最新情報はInstagramへ</h3>
+        <p>
+            📧 <a href="mailto:miraigohanshokudo@gmail.com" style="color: #d35400; text-decoration: none; font-weight: bold;">
+                miraigohanshokudo@gmail.com
+            </a>
+        </p>
+        <a href="https://www.instagram.com/miraigohanshokudo/" class="btn-insta" target="_blank">Instagramを見る</a>
+    </section>
+</div>
+
+<footer>
+    <p>代表：内田 孔明</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true,
+  });
+</script>
+</body>
+</html>
