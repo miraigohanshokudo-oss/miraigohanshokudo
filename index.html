@@ -7,70 +7,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ここからデザイン設定 */
+        /* 全体のデザイン設定 */
         body { 
             font-family: 'Zen Maru Gothic', sans-serif; 
-            margin: 0; 
-            padding: 0;
-            color: #444; 
-            background-color: #fffaf0; 
-            line-height: 1.6;
+            margin: 0; padding: 0;
+            color: #444; background-color: #fffaf0; line-height: 1.6;
         }
-
-        /* ヘッダー（オレンジの部分） */
         header { 
-            background-color: #FF9F43; 
-            color: white; 
-            padding: 3rem 1rem; 
-            text-align: center; 
+            background-color: #FF9F43; color: white; padding: 3rem 1rem; text-align: center; 
         }
-
-        /* 白い箱（セクション）のデザイン */
         .box-style { 
-            background: white; 
-            max-width: 800px;
-            margin: 2rem auto; 
-            padding: 2rem; 
-            border-radius: 12px; 
-            border: 2px solid #ffeaa7; 
-            width: 90%; /* スマホでもはみ出さない設定 */
+            background: white; max-width: 800px; margin: 2rem auto; padding: 2rem; 
+            border-radius: 12px; border: 2px solid #ffeaa7; width: 90%; box-sizing: border-box;
         }
-
-        /* 見出し */
         h3 { 
-            color: #d35400; 
-            border-left: 5px solid #FF9F43; 
-            padding-left: 1rem; 
+            color: #d35400; border-left: 5px solid #FF9F43; padding-left: 1rem; margin-top: 0;
         }
-
-        /* ボタンのデザイン */
+        
+        /* ボタン設定 */
         .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            margin-top: 10px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            border-radius: 50px;
-            transition: opacity 0.3s;
+            display: inline-block; padding: 15px 30px; margin-top: 10px;
+            text-decoration: none; color: white; font-weight: bold; border-radius: 50px;
         }
         .btn:hover { opacity: 0.8; }
-
-        /* 各ボタンの色 */
-        .btn-map { background-color: #3498db; }   /* 地図：青 */
-        .btn-line { background-color: #06C755; }  /* LINE：緑 */
+        .btn-map { background-color: #3498db; }
+        .btn-line { background-color: #06C755; }
         .btn-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-
-        /* リスト */
-        ul { padding-left: 20px; }
-        li { margin-bottom: 5px; }
-
+        
+        /* リスト・その他 */
+        ul { padding-left: 0; list-style: none; }
+        li::before { content: "🧡"; margin-right: 5px; }
+        
         footer { 
-            background-color: #FF9F43; 
-            color: white; 
-            text-align: center; 
-            padding: 20px; 
-            margin-top: 50px;
+            background-color: #FF9F43; color: white; text-align: center; padding: 20px; margin-top: 50px;
         }
     </style>
 </head>
@@ -97,7 +66,7 @@
         <p><strong>参加費：</strong>子ども無料 / 大人 250円</p>
         
         <div style="text-align: center; margin-top: 20px;">
-            <a href="https://www.google.com/maps/search/?api=1&query=ケアハウスあいおい苑" target="_blank" class="btn btn-map">
+            <a href="https://www.google.com/maps/search/?api=1&query=山口県防府市佐野152-1" target="_blank" class="btn btn-map">
                 📍 Googleマップで場所を見る
             </a>
         </div>
@@ -137,7 +106,7 @@
             <p>ご家庭で余っている食材や、おすそ分けがあれば大変助かります。</p>
             <div style="background: #fff9c4; padding: 15px; border-radius: 8px;">
                 <p style="font-weight: bold; border-bottom: 2px solid white; margin-top: 0;">【現在受付中のもの】</p>
-                <ul style="margin-top: 0;">
+                <ul>
                     <li>お米、麺類</li>
                     <li>缶詰、レトルト食品</li>
                     <li>お菓子、ジュース</li>
