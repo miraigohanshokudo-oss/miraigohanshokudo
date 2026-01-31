@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>みらいごはん食堂 | 防府市の地域・子ども食堂</title>
+    <title>みらいごはん食堂</title>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* ▼▼▼ デザイン設定 ▼▼▼ */
+        /* ここからデザイン設定 */
         body { 
             font-family: 'Zen Maru Gothic', sans-serif; 
-            line-height: 1.8; 
             margin: 0; 
+            padding: 0;
             color: #444; 
             background-color: #fffaf0; 
+            line-height: 1.6;
         }
-        
+
+        /* ヘッダー（オレンジの部分） */
         header { 
             background-color: #FF9F43; 
             color: white; 
@@ -22,104 +25,143 @@
             text-align: center; 
         }
 
-        .container { 
-            max-width: 800px; 
-            margin: 0 auto; 
-            padding: 2rem 1rem; 
-        }
-        
-        section { 
+        /* 白い箱（セクション）のデザイン */
+        .box-style { 
             background: white; 
-            margin-bottom: 2rem; 
+            max-width: 800px;
+            margin: 2rem auto; 
             padding: 2rem; 
             border-radius: 12px; 
             border: 2px solid #ffeaa7; 
+            width: 90%; /* スマホでもはみ出さない設定 */
         }
-        
+
+        /* 見出し */
         h3 { 
             color: #d35400; 
             border-left: 5px solid #FF9F43; 
             padding-left: 1rem; 
-            margin-top: 0; 
         }
-        
-        .contact-box { 
-            text-align: center; 
-            background: #fff4e6; 
-            padding: 2rem; 
-            border-radius: 12px; 
-        }
-        
-        /* ボタンのデザイン */
-        .btn-common {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            margin-top: 1rem;
-            color: white;
-        }
-        .btn-common:hover { opacity: 0.8; }
 
-        .btn-map { background-color: #3498db; }
-        .btn-line { background-color: #06C755; }
+        /* ボタンのデザイン */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin-top: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: opacity 0.3s;
+        }
+        .btn:hover { opacity: 0.8; }
+
+        /* 各ボタンの色 */
+        .btn-map { background-color: #3498db; }   /* 地図：青 */
+        .btn-line { background-color: #06C755; }  /* LINE：緑 */
         .btn-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
 
-        /* リストの調整 */
-        ul.support-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-        ul.support-list li {
-            margin-bottom: 0.3rem;
-        }
-        ul.support-list li::before {
-            content: "🧡";
-            margin-right: 8px;
-        }
-        
-        /* Q&A */
-        .qa-box { text-align: left; margin-top: 1.5rem; }
-        .qa-q { font-weight: bold; color: #d35400; margin-bottom: 0.5rem; }
-        .qa-a { margin-bottom: 1.5rem; padding-left: 1rem; border-left: 3px solid #ffeaa7; }
+        /* リスト */
+        ul { padding-left: 20px; }
+        li { margin-bottom: 5px; }
 
         footer { 
             background-color: #FF9F43; 
             color: white; 
             text-align: center; 
-            padding: 2rem; 
+            padding: 20px; 
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
 
-<header> 
-    <div style="margin-bottom: 2rem;">
-        <img src="logo.png" alt="みらいごはん食堂 ロゴ" 
-             style="width: 150px; height: auto; 
-                    border-radius: 50%;
-                    padding: 10px;
-                    background-color: white;
-                    box-shadow: 0 0 15px rgba(255,255,255,0.8);">
-    </div>
-    
-    <h1 style="margin-top: 0;">みらいごはん食堂</h1>
-    <p>～だれでも来られる、地域みんなの居場所～</p>
-</header>
+    <header>
+        <div style="margin-bottom: 20px;">
+            <img src="logo.png" alt="ロゴ" style="width: 120px; border-radius: 50%; background: white; padding: 5px;">
+        </div>
+        <h1 style="margin: 0;">みらいごはん食堂</h1>
+        <p>～だれでも来られる、地域みんなの居場所～</p>
+    </header>
 
-<div class="container">
-    <section>
+    <div class="box-style">
         <h3>みらいごはん食堂について</h3>
         <p>「みらいごはん食堂」は、山口県防府市で活動する子ども食堂・地域食堂です。世代を超えてつながれる「第3の居場所」を目指しています。</p>
-    </section>
+    </div>
 
-    <section>
+    <div class="box-style">
         <h3>開催情報</h3>
         <p><strong>日時：</strong>毎月 第3日曜日 お昼（11:30〜13:30頃）</p>
         <p><strong>場所：</strong>ケアハウスあいおい苑 1階 デイサービス実施スペース（防府市佐野152-1）</p>
-        <p><strong>駐車場：</strong>あり<br>
-        <span style="font-size: 0.9rem;">※施設の敷地内、または敷地前の駐車場をご利用いただけます。</span></p>
+        <p><strong>駐車場：</strong>あり<br>※施設の敷地内、または敷地前の駐車場をご利用いただけます。</p>
         <p><strong>参加費：</strong>子ども無料 / 大人 250円</p>
+        
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="https://www.google.com/maps/search/?api=1&query=ケアハウスあいおい苑" target="_blank" class="btn btn-map">
+                📍 Googleマップで場所を見る
+            </a>
+        </div>
+    </div>
+
+    <div class="box-style" style="text-align: center; border-color: #06C755;">
+        <h3 style="color: #06C755; border-color: #06C755; text-align: left;">参加申し込みについて</h3>
+        <p style="text-align: left;">開催の案内と参加募集は、LINEオープンチャットにて行います。<br>ぜひ登録してお待ちください！</p>
+        
+        <a href="https://line.me/ti/g2/XtKt8VAP887JrKY9S0ERs1GesUh3lb5yctO5XA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="btn btn-line">
+            LINEオープンチャットに参加
+        </a>
+
+        <div style="margin-top: 20px; text-align: left; background: #fff0f0; padding: 15px; border-radius: 8px;">
+            <p style="color: #c0392b; font-weight: bold; margin: 0 0 5px 0;">⚠️ アレルギー対応について</p>
+            <p style="font-size: 0.9em; margin: 0;">当食堂では、食物アレルギー対応の食事提供は行っておりません。誤食事故防止のため、誠に恐れ入りますが、ご理解とご自身でのご判断をお願いいたします。</p>
+        </div>
+    </div>
+
+    <div class="box-style">
+        <h3>よくある質問</h3>
+        <p><strong>Q. 子どもだけで行ってもいいですか？</strong><br>
+        はい、お子様だけでの参加も大歓迎です！スタッフが見守りますので安心してお越しください。<br>もちろん、<strong>親御さんのご参加も大歓迎です！</strong></p>
+        
+        <p><strong>Q. 駐車場はありますか？</strong><br>
+        はい、施設の敷地内および敷地前の駐車場をご利用いただけます。</p>
+    </div>
+
+    <div class="box-style">
+        <h3>応援してくれる方へ</h3>
+        <div style="margin-bottom: 20px;">
+            <h4 style="color: #d35400;">🤝 ボランティア募集</h4>
+            <p>調理、配膳、受付、子どもの遊び相手など、できる範囲でお手伝いいただける方を募集しています。<br>学生さんからシニアの方まで大歓迎です！</p>
+        </div>
+        <div>
+            <h4 style="color: #d35400;">🥕 食材のご寄付（フードドライブ）</h4>
+            <p>ご家庭で余っている食材や、おすそ分けがあれば大変助かります。</p>
+            <div style="background: #fff9c4; padding: 15px; border-radius: 8px;">
+                <p style="font-weight: bold; border-bottom: 2px solid white; margin-top: 0;">【現在受付中のもの】</p>
+                <ul style="margin-top: 0;">
+                    <li>お米、麺類</li>
+                    <li>缶詰、レトルト食品</li>
+                    <li>お菓子、ジュース</li>
+                    <li>日持ちする野菜（玉ねぎ・じゃがいも等）</li>
+                </ul>
+            </div>
+            <p style="font-size: 0.9em; margin-top: 5px;">※賞味期限切れ、開封済みのものはご遠慮ください。</p>
+        </div>
+        <hr style="margin: 30px 0; border: 0; border-top: 1px dashed #FF9F43;">
+        <p style="text-align: center;">
+            ボランティア・寄付のご連絡は<br>
+            <strong>InstagramのDM</strong> または <strong><a href="mailto:miraigohanshokudo@gmail.com" style="color: #d35400;">メール</a></strong> にて。
+        </p>
+    </div>
+
+    <div class="box-style" style="text-align: center; background: #fff4e6;">
+        <h3>最新情報はInstagramへ</h3>
+        <p>📧 <a href="mailto:miraigohanshokudo@gmail.com" style="color: #d35400; font-weight: bold;">miraigohanshokudo@gmail.com</a></p>
+        <a href="https://www.instagram.com/miraigohanshokudo/" target="_blank" class="btn btn-insta">Instagramを見る</a>
+    </div>
+
+    <footer>
+        <p>代表：内田 孔明</p>
+    </footer>
+
+</body>
+</html>
