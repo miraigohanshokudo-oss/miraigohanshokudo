@@ -15,7 +15,7 @@
             background-color: #fffaf0; 
         }
         
-        /* ヘッダー（オレンジの部分） */
+        /* ヘッダー */
         header { 
             background-color: #FF9F43; 
             color: white; 
@@ -23,14 +23,14 @@
             text-align: center; 
         }
         
-        /* ページ全体の大枠 */
+        /* コンテナ */
         .container { 
             max-width: 800px; 
             margin: 0 auto; 
             padding: 2rem 1rem; 
         }
         
-        /* 各セクション（白い箱） */
+        /* セクション（白い箱） */
         section { 
             background: white; 
             margin-bottom: 2rem; 
@@ -48,27 +48,21 @@
         }
         
         /* ボタン類のデザイン */
-        .btn-insta { 
-            display: inline-block; 
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
-            color: white; 
-            padding: 0.8rem 2rem; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            margin-top: 1rem; 
-        }
-        
-        .btn-line {
+        .btn-common {
             display: inline-block;
-            background-color: #06C755;
-            color: white;
-            padding: 1rem 3rem;
+            padding: 0.8rem 2rem;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
             margin-top: 1rem;
+            color: white;
+            transition: opacity 0.3s;
         }
+        .btn-common:hover { opacity: 0.8; }
+
+        .btn-map { background-color: #3498db; }   /* 地図ボタン：青 */
+        .btn-line { background-color: #06C755; }  /* LINEボタン：緑 */
+        .btn-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); } /* インスタ */
 
         /* リスト・Q&A */
         ul.support-list { list-style: none; padding: 0; margin-top: 0.5rem; }
@@ -96,4 +90,52 @@
     <div class="container">
         <section>
             <h3>みらいごはん食堂について</h3>
-            <p>「みらいごはん食堂」は、山口県防府市で活動する子ども食堂・地域食堂
+            <p>「みらいごはん食堂」は、山口県防府市で活動する子ども食堂・地域食堂です。世代を超えてつながれる「第3の居場所」を目指しています。</p>
+        </section>
+
+        <section>
+            <h3>開催情報</h3>
+            <p><strong>日時：</strong>毎月 第3日曜日 お昼（11:30〜13:30頃）</p>
+            <p><strong>場所：</strong>ケアハウスあいおい苑 1階 デイサービス実施スペース（防府市佐野152-1）</p>
+            <p><strong>駐車場：</strong>あり<br><span style="font-size:0.9rem">※施設の敷地内、または敷地前の駐車場をご利用いただけます。</span></p>
+            <p><strong>参加費：</strong>子ども無料 / 大人 250円</p>
+            
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <a href="https://www.google.com/maps/search/?api=1&query=ケアハウスあいおい苑+山口県防府市佐野152-1" 
+                   target="_blank" class="btn-common btn-map">
+                   📍 Googleマップで場所を見る
+                </a>
+            </div>
+        </section>
+
+        <section style="text-align: center; border-color: #06C755;">
+            <h3 style="color: #06C755; border-color: #06C755;">参加申し込みについて</h3>
+            <p>開催の案内と参加募集は、LINEオープンチャットにて行います。<br>ぜひ登録してお待ちください！</p>
+            
+            <a href="https://line.me/ti/g2/XtKt8VAP887JrKY9S0ERs1GesUh3lb5yctO5XA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" 
+               class="btn-common btn-line" target="_blank">LINEオープンチャットに参加</a>
+            
+            <div style="margin-top: 1.5rem; text-align: left; background: #fff0f0; padding: 1rem; border-radius: 8px;">
+                <p style="color: #c0392b; font-weight: bold; margin-bottom: 0.5rem;">⚠️ アレルギー対応について</p>
+                <p style="font-size: 0.95rem; margin: 0;">当食堂では、食物アレルギー対応の食事提供は行っておりません。<br>誤食事故防止のため、誠に恐れ入りますが、ご理解とご自身でのご判断をお願いいたします。</p>
+            </div>
+        </section>
+
+        <section>
+            <h3>よくある質問</h3>
+            <div class="qa-box">
+                <div class="qa-q">Q. 子どもだけで行ってもいいですか？</div>
+                <div class="qa-a">はい、お子様だけでの参加も大歓迎です！スタッフが見守りますので安心してお越しください。<br>もちろん、<strong>親御さんのご参加も大歓迎です！</strong></div>
+                <div class="qa-q">Q. 駐車場はありますか？</div>
+                <div class="qa-a">はい、施設の敷地内および敷地前の駐車場をご利用いただけます。</div>
+            </div>
+        </section>
+
+        <section>
+            <h3>応援してくれる方へ</h3>
+            <div style="margin-bottom: 2rem;">
+                <h4 style="color: #d35400;">🤝 ボランティア募集</h4>
+                <p>調理、配膳、受付、子どもの遊び相手など、できる範囲でお手伝いいただける方を募集しています。</p>
+            </div>
+            <div>
+                <h4 style="color: #d35400;">🥕 食材のご寄付（フードドライブ
