@@ -60,7 +60,39 @@
         <a href="https://www.instagram.com/miraigohanshokudo/" class="btn-insta" target="_blank">Instagramを見る</a>
     </section>
 </div>
+/* Googleフォーム予約ボタン用のスタイル */
+.btn-form {
+    display: inline-block;
+    background-color: #27ae60; /* 安心感のある緑色 */
+    color: white;
+    padding: 1rem 3rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    margin-top: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+.btn-form:hover {
+    transform: translateY(-3px); /* 浮き上がる動き */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    background-color: #219150;
+}
 
+/* リストのデザイン調整 */
+ul.support-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    display: inline-block;
+}
+ul.support-list li {
+    margin-bottom: 0.5rem;
+}
+ul.support-list li::before {
+    content: "🧡"; /* 箇条書きの点をハートに */
+    margin-right: 8px;
+}
 <footer>
     <p>代表：内田 孔明</p>
 </footer>
@@ -75,3 +107,4 @@
 </body>
 
 </html>
+
