@@ -19,12 +19,10 @@
         .btn-insta { display: inline-block; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; padding: 0.8rem 2rem; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 1rem; transition: transform 0.3s; }
         .btn-insta:hover { transform: scale(1.05); }
 
-        /* ▼▼▼ 追加したCSSはここ（styleタグの中）に移動しました ▼▼▼ */
-        
-        /* Googleフォーム予約ボタン用のスタイル */
+        /* Googleフォーム予約ボタン */
         .btn-form {
             display: inline-block;
-            background-color: #27ae60; /* 安心感のある緑色 */
+            background-color: #27ae60;
             color: white;
             padding: 1rem 3rem;
             text-decoration: none;
@@ -35,12 +33,12 @@
             transition: all 0.3s ease;
         }
         .btn-form:hover {
-            transform: translateY(-3px); /* 浮き上がる動き */
+            transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
             background-color: #219150;
         }
 
-        /* リストのデザイン調整 */
+        /* 箇条書きリスト */
         ul.support-list {
             list-style: none;
             padding: 0;
@@ -51,7 +49,7 @@
             margin-bottom: 0.5rem;
         }
         ul.support-list li::before {
-            content: "🧡"; /* 箇条書きの点をハートに */
+            content: "🧡";
             margin-right: 8px;
         }
         
@@ -64,7 +62,7 @@
     <div data-aos="fade-down" data-aos-duration="1500" style="margin-bottom: 2rem;">
         <img src="logo.png" alt="みらいごはん食堂 ロゴ" 
              style="width: 150px; height: auto; 
-                    border-radius: 50%; /* ロゴを丸くする修正も入れておきました */
+                    border-radius: 50%;
                     padding: 10px;
                     background-color: white;
                     box-shadow: 0 0 15px rgba(255,255,255,0.8);">
@@ -87,11 +85,11 @@
         
         <div style="margin-top: 1rem; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 2px solid #ffeaa7;">
             <iframe 
-                src="https://maps.google.com/maps?q=山口県防府市佐野152-1&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                src="https://maps.google.com/maps?q=山口県防府市佐野152-1&output=embed" 
                 style="border:0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
                 allowfullscreen="" 
                 loading="lazy"
-                title="みらいごはん食堂（ケアハウスあいおい苑）の地図">
+                title="地図">
             </iframe>
         </div>
     </section>
