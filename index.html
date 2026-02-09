@@ -8,15 +8,32 @@
     <link rel="icon" href="favicon.png" type="image/png">
     
     <style>
-        /* カードにマウスを置いた時の動きを追加 */
+        /* 1. 動きそのもの（アニメーション）を作る */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* 最初は20px下に下げておく */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);    /* 本来の位置に戻る */
+            }
+        }
+        
+        /* 2. カードにその動きを適用する */
         .box-style {
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 動きをなめらかにする */
+            animation: fadeInUp 0.8s ease-out; /* 0.8秒かけてふわっと表示 */
+            
+            /* 前回の「マウスを置いた時の動き」もそのまま使えます */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
         .box-style:hover {
-            transform: translateY(-5px); /* 上に5px浮かせる */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* 影をつけて浮いた感じにする */
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
+
+        
         /* 全体のデザイン設定 */
         body { 
             font-family: 'Zen Maru Gothic', sans-serif; 
@@ -148,4 +165,5 @@
 
 </body>
 </html>
+
 
