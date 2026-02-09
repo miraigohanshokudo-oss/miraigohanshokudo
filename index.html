@@ -8,32 +8,25 @@
     <link rel="icon" href="favicon.png" type="image/png">
     
     <style>
-        /* 1. 動きそのもの（アニメーション）を作る */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px); /* 最初は20px下に下げておく */
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);    /* 本来の位置に戻る */
-            }
-        }
-        
-        /* 2. カードにその動きを適用する */
+        /* 最初は透明にしておく */
         .box-style {
-            animation: fadeInUp 0.8s ease-out; /* 0.8秒かけてふわっと表示 */
-            
-            /* 前回の「マウスを置いた時の動き」もそのまま使えます */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.6s ease-out, opacity 0.6s ease-out, box-shadow 0.3s ease;
         }
         
+        /* 画面に入った時にこのクラスをJSでつける */
+        .box-style.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ホバー設定はそのまま */
         .box-style:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        
         /* 全体のデザイン設定 */
         body { 
             font-family: 'Zen Maru Gothic', sans-serif; 
@@ -68,16 +61,25 @@
         footer { 
             background-color: #FF9F43; color: white; text-align: center; padding: 20px; margin-top: 50px;
         }
-        /* 2番目以降のカードを少し遅らせて出す */
-        .box-style:nth-child(2) { animation-delay: 0.2s; }
-        .box-style:nth-child(3) { animation-delay: 0.4s; }
-        .box-style:nth-child(4) { animation-delay: 0.6s; }
     </style>
     <meta charset="UTF-8">
     <title>みらいごはん食堂</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic..." rel="stylesheet">
 </head>
+    <script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    }, { threshold: 0.2 }); // 20%見えたら実行
+
+    document.querySelectorAll('.box-style').forEach(box => {
+        observer.observe(box);
+    });
+</script>
 <body>
 
     <header>
@@ -169,6 +171,7 @@
 
 </body>
 </html>
+
 
 
 
