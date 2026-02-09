@@ -1,169 +1,271 @@
 <!DOCTYPE html>
+
 <html lang="ja">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>みらいごはん食堂</title>
-    <link rel="icon" href="favicon.png" type="image/png">
+
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+
     
+
     <style>
-        /* 全体の基本設定 */
+
+        /* 全体のデザイン設定 */
+
         body { 
+
             font-family: 'Zen Maru Gothic', sans-serif; 
+
             margin: 0; padding: 0;
+
             color: #444; background-color: #fffaf0; line-height: 1.6;
-            overflow-x: hidden;
+
         }
 
         header { 
+
             background-color: #FF9F43; color: white; padding: 3rem 1rem; text-align: center; 
+
         }
 
-        /* --- アニメーション設定 --- */
         .box-style { 
+
             background: white; max-width: 800px; margin: 2rem auto; padding: 2rem; 
+
             border-radius: 12px; border: 2px solid #ffeaa7; width: 90%; box-sizing: border-box;
-            
-            /* 初期状態：透明で少し下に下げておく */
-            opacity: 0;
-            transform: translateY(30px);
-            transition: transform 0.8s ease-out, opacity 0.8s ease-out, box-shadow 0.3s ease;
+
         }
 
-        /* 画面に入った時につくクラス */
-        .box-style.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* マウスを置いた時の動き */
-        .box-style:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        /* --- 各パーツのデザイン --- */
         h3 { 
+
             color: #d35400; border-left: 5px solid #FF9F43; padding-left: 1rem; margin-top: 0;
+
         }
+
         
+
+        /* ボタン設定 */
+
         .btn {
+
             display: inline-block; padding: 15px 30px; margin-top: 10px;
+
             text-decoration: none; color: white; font-weight: bold; border-radius: 50px;
-            transition: opacity 0.3s;
+
         }
+
         .btn:hover { opacity: 0.8; }
+
         .btn-map { background-color: #3498db; }
+
         .btn-line { background-color: #06C755; }
+
         .btn-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+
         
+
+        /* リスト・その他 */
+
         ul { padding-left: 0; list-style: none; }
+
         li::before { content: "🧡"; margin-right: 5px; }
+
         
+
         footer { 
+
             background-color: #FF9F43; color: white; text-align: center; padding: 20px; margin-top: 50px;
+
         }
+
     </style>
+
 </head>
+
 <body>
 
+
+
     <header>
+
         <div style="margin-bottom: 20px;">
+
             <img src="logo.png" alt="ロゴ" style="width: 120px; border-radius: 50%; background: white; padding: 5px;">
+
         </div>
+
         <h1 style="margin: 0;">みらいごはん食堂</h1>
+
         <p>～だれでも来られる、地域みんなの居場所～</p>
+
     </header>
 
+
+
     <div class="box-style">
+
         <h3>みらいごはん食堂について</h3>
+
         <p>「みらいごはん食堂」は、山口県防府市で活動する子ども食堂・地域食堂です。世代を超えてつながれる「第3の居場所」を目指しています。</p>
+
     </div>
 
+
+
     <div class="box-style">
+
         <h3>開催情報</h3>
+
         <p><strong>日時：</strong>毎月 第3日曜日 お昼（11:30〜13:30頃）</p>
+
         <p><strong>場所：</strong>ケアハウスあいおい苑 1階 デイサービス実施スペース（防府市佐野152-1）</p>
+
         <p><strong>駐車場：</strong>あり<br>※施設の敷地内、または敷地前の駐車場をご利用いただけます。</p>
+
         <p><strong>参加費：</strong>子ども無料 / 大人 250円</p>
+
         
+
         <div style="text-align: center; margin-top: 20px;">
-            <a href="https://www.google.com/maps/search/?api=1&query=防府市佐野152-1" target="_blank" class="btn btn-map">
+
+            <a href="https://www.google.com/maps/search/?api=1&query=山口県防府市佐野152-1" target="_blank" class="btn btn-map">
+
                 📍 Googleマップで場所を見る
+
             </a>
+
         </div>
+
     </div>
 
-    <div class="box-style" style="border-color: #06C755;">
-        <h3 style="color: #06C755; border-color: #06C755;">参加申し込みについて</h3>
-        <p>開催の案内と参加募集は、LINEオープンチャットにて行います。<br>ぜひ登録してお待ちください！</p>
-        <div style="text-align: center;">
-            <a href="https://line.me/ti/g2/XtKt8VAP887JrKY9S0ERs1GesUh3lb5yctO5XA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="btn btn-line">
-                LINEオープンチャットに参加
-            </a>
-        </div>
 
-        <div style="margin-top: 20px; background: #fff0f0; padding: 15px; border-radius: 8px;">
-            <p style="color: #c0392b; font-weight: bold; margin: 0 0 5px 0;">⚠️ アレルギー対応について</p>
-            <p style="font-size: 0.9em; margin: 0;">当食堂では、食物アレルギー対応の食事提供は行っておりません。誤食事故防止のため、誠に恐れ入りますが、ご理解とご自身でのご判断をお願いいたします。</p>
-        </div>
-    </div>
 
-    <div class="box-style">
-        <h3>よくある質問</h3>
-        <p><strong>Q. 子どもだけで行ってもいいですか？</strong><br>
-        はい、お子様だけでの参加も大歓迎です！スタッフが見守りますので安心してお越しください。<br>もちろん、<strong>親御さんのご参加も大歓迎です！</strong></p>
+    <div class="box-style" style="text-align: center; border-color: #06C755;">
+
+        <h3 style="color: #06C755; border-color: #06C755; text-align: left;">参加申し込みについて</h3>
+
+        <p style="text-align: left;">開催の案内と参加募集は、LINEオープンチャットにて行います。<br>ぜひ登録してお待ちください！</p>
+
         
-        <p><strong>Q. 駐車場はありますか？</strong><br>
-        はい、施設の敷地内および敷地前の駐車場をご利用いただけます。</p>
+
+        <a href="https://line.me/ti/g2/XtKt8VAP887JrKY9S0ERs1GesUh3lb5yctO5XA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="btn btn-line">
+
+            LINEオープンチャットに参加
+
+        </a>
+
+
+
+        <div style="margin-top: 20px; text-align: left; background: #fff0f0; padding: 15px; border-radius: 8px;">
+
+            <p style="color: #c0392b; font-weight: bold; margin: 0 0 5px 0;">⚠️ アレルギー対応について</p>
+
+            <p style="font-size: 0.9em; margin: 0;">当食堂では、食物アレルギー対応の食事提供は行っておりません。誤食事故防止のため、誠に恐れ入りますが、ご理解とご自身でのご判断をお願いいたします。</p>
+
+        </div>
+
     </div>
 
+
+
     <div class="box-style">
-        <h3>応援してくれる方へ</h3>
-        <div style="margin-bottom: 20px;">
-            <h4 style="color: #d35400;">🤝 ボランティア募集</h4>
-            <p>調理、配膳、受付、子どもの遊び相手など、できる範囲でお手伝いいただける方を募集しています。</p>
-        </div>
-        <div>
-            <h4 style="color: #d35400;">🥕 食材のご寄付</h4>
-            <div style="background: #fff9c4; padding: 15px; border-radius: 8px;">
-                <p style="font-weight: bold; border-bottom: 2px solid white; margin-top: 0;">【受付中のもの】</p>
-                <ul>
-                    <li>お米、麺類、缶詰、お菓子</li>
-                    <li>日持ちする野菜（玉ねぎ・じゃがいも等）</li>
-                </ul>
-            </div>
-        </div>
-        <hr style="margin: 30px 0; border: 0; border-top: 1px dashed #FF9F43;">
-        <p style="text-align: center;">
-            ご連絡は <strong>InstagramのDM</strong> または <strong><a href="mailto:miraigohanshokudo@gmail.com" style="color: #d35400;">メール</a></strong> にて。
-        </p>
+
+        <h3>よくある質問</h3>
+
+        <p><strong>Q. 子どもだけで行ってもいいですか？</strong><br>
+
+        はい、お子様だけでの参加も大歓迎です！スタッフが見守りますので安心してお越しください。<br>もちろん、<strong>親御さんのご参加も大歓迎です！</strong></p>
+
+        
+
+        <p><strong>Q. 駐車場はありますか？</strong><br>
+
+        はい、施設の敷地内および敷地前の駐車場をご利用いただけます。</p>
+
     </div>
+
+
+
+    <div class="box-style">
+
+        <h3>応援してくれる方へ</h3>
+
+        <div style="margin-bottom: 20px;">
+
+            <h4 style="color: #d35400;">🤝 ボランティア募集</h4>
+
+            <p>調理、配膳、受付、子どもの遊び相手など、できる範囲でお手伝いいただける方を募集しています。<br>学生さんからシニアの方まで大歓迎です！</p>
+
+        </div>
+
+        <div>
+
+            <h4 style="color: #d35400;">🥕 食材のご寄付（フードドライブ）</h4>
+
+            <p>ご家庭で余っている食材や、おすそ分けがあれば大変助かります。</p>
+
+            <div style="background: #fff9c4; padding: 15px; border-radius: 8px;">
+
+                <p style="font-weight: bold; border-bottom: 2px solid white; margin-top: 0;">【現在受付中のもの】</p>
+
+                <ul>
+
+                    <li>お米、麺類</li>
+
+                    <li>缶詰、レトルト食品</li>
+
+                    <li>お菓子、ジュース</li>
+
+                    <li>日持ちする野菜（玉ねぎ・じゃがいも等）</li>
+
+                </ul>
+
+            </div>
+
+            <p style="font-size: 0.9em; margin-top: 5px;">※賞味期限切れ、開封済みのものはご遠慮ください。</p>
+
+        </div>
+
+        <hr style="margin: 30px 0; border: 0; border-top: 1px dashed #FF9F43;">
+
+        <p style="text-align: center;">
+
+            ボランティア・寄付のご連絡は<br>
+
+            <strong>InstagramのDM</strong> または <strong><a href="mailto:miraigohanshokudo@gmail.com" style="color: #d35400;">メール</a></strong> にて。
+
+        </p>
+
+    </div>
+
+
 
     <div class="box-style" style="text-align: center; background: #fff4e6;">
+
         <h3>最新情報はInstagramへ</h3>
+
         <p>📧 <a href="mailto:miraigohanshokudo@gmail.com" style="color: #d35400; font-weight: bold;">miraigohanshokudo@gmail.com</a></p>
+
         <a href="https://www.instagram.com/miraigohanshokudo/" target="_blank" class="btn btn-insta">Instagramを見る</a>
+
     </div>
 
+
+
     <footer>
+
         <p>代表：内田 孔明</p>
+
     </footer>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.box-style').forEach(box => {
-            observer.observe(box);
-        });
-    </script>
 
 </body>
+
 </html>
