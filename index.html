@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>みらいごはん食堂</title>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.png" type="image/png">
     
     <style>
+        /* カードにマウスを置いた時の動きを追加 */
+        .box-style {
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 動きをなめらかにする */
+        }
+        
+        .box-style:hover {
+            transform: translateY(-5px); /* 上に5px浮かせる */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* 影をつけて浮いた感じにする */
+        }
         /* 全体のデザイン設定 */
         body { 
             font-family: 'Zen Maru Gothic', sans-serif; 
@@ -42,6 +52,10 @@
             background-color: #FF9F43; color: white; text-align: center; padding: 20px; margin-top: 50px;
         }
     </style>
+    <meta charset="UTF-8">
+    <title>みらいごはん食堂</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic..." rel="stylesheet">
 </head>
 <body>
 
@@ -134,3 +148,4 @@
 
 </body>
 </html>
+
