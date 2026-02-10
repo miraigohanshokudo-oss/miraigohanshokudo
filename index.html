@@ -6,6 +6,9 @@
     <title>みらいごはん食堂 | 防府市の子ども食堂・地域食堂</title>
     <meta name="description" content="山口県防府市のみらいごはん食堂。みんなで食べるごはんは美味しい。子ども無料、大人250円で開催中。">
     
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.png" type="image/png">
+
     <!-- React, ReactDOM, Babel -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -274,7 +277,17 @@
                                 className="flex items-center gap-3 cursor-pointer group" 
                                 onClick={() => setActiveTab('home')}
                             >
-                                <div className="bg-gradient-to-br from-orange-400 to-orange-600 p-2 rounded-xl text-white shadow-lg shadow-orange-200 group-hover:scale-105 transition-transform">
+                                {/* ロゴ画像: エラー時は元のアイコンを表示 */}
+                                <img 
+                                    src="logo.png" 
+                                    alt="みらいごはん食堂" 
+                                    className="h-10 w-auto object-contain group-hover:scale-105 transition-transform"
+                                    onError={(e) => {
+                                        e.target.style.display = 'none';
+                                        e.target.nextSibling.style.display = 'block';
+                                    }}
+                                />
+                                <div className="hidden bg-gradient-to-br from-orange-400 to-orange-600 p-2 rounded-xl text-white shadow-lg shadow-orange-200 group-hover:scale-105 transition-transform" style={{display: 'none'}}>
                                     <Icon name="utensils" size={20} className="fill-white/20" />
                                 </div>
                                 <span className="font-bold text-lg md:text-xl tracking-tight text-gray-800 group-hover:text-orange-600 transition-colors">
