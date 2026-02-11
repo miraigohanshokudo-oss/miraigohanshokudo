@@ -133,7 +133,6 @@
         // --- Helper: Google Drive Link Converter ---
         const getGoogleDriveImageUrl = (url) => {
             if (!url) return '';
-            // Handle standard Google Drive sharing links
             const idMatch = url.match(/[-\w]{25,}/);
             if (idMatch) {
                 return `https://lh3.googleusercontent.com/d/${idMatch[0]}`;
@@ -141,62 +140,27 @@
             return url;
         };
 
-        // --- Activity Carousel Component (Slideshow) ---
-        const ActivitySection = () => {
-            const [activities, setActivities] = useState([]);
-            const [loading, setLoading] = useState(true);
+        // --- Activity Carousel Component ---
+        const ActivitySection = ({ activities }) => {
             const scrollRef = useRef(null);
-
-            useEffect(() => {
-                fetch(GOOGLE_SHEET_CSV_URL)
-                    .then(res => res.text())
-                    .then(text => {
-                        const lines = text.split(/\r?\n/).filter(line => line.trim() !== "");
-                        const nextActivities = [];
-                        
-                        for(let i = 1; i < lines.length; i++) {
-                            const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"(.*)"$/, '$1').trim());
-                            if (cols.length >= 2) {
-                                const value = cols[0]; // Image URL
-                                const category = cols[1].toLowerCase(); 
-                                const caption = cols[2] || ""; // Optional caption
-
-                                if (value && (category.includes('activity') || category.includes('活動'))) {
-                                    nextActivities.push({
-                                        url: getGoogleDriveImageUrl(value),
-                                        caption: caption
-                                    });
-                                }
-                            }
-                        }
-                        setActivities(nextActivities);
-                        setLoading(false);
-                    })
-                    .catch(err => {
-                        console.error("Fetch error:", err);
-                        setLoading(false);
-                    });
-            }, []);
 
             // Auto scroll effect
             useEffect(() => {
-                if (activities.length === 0) return;
+                if (!activities || activities.length === 0) return;
                 const interval = setInterval(() => {
                     if (scrollRef.current) {
                         const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-                        // If near the end (within 10px), scroll back to start
-                        // else scroll right by 320px (card width + gap)
                         if (scrollLeft + clientWidth >= scrollWidth - 10) {
                             scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
                         } else {
                             scrollRef.current.scrollBy({ left: 320, behavior: 'smooth' });
                         }
                     }
-                }, 4000); // Scroll every 4 seconds
+                }, 4000);
                 return () => clearInterval(interval);
             }, [activities]);
 
-            if (loading || activities.length === 0) return null;
+            if (!activities || activities.length === 0) return null;
 
             return (
                 <div className="space-y-6 py-8">
@@ -233,54 +197,8 @@
         };
 
         // --- Supporters Component ---
-        const SupportersSection = () => {
-            const [data, setData] = useState({ special: [], food: [], donations: [] });
-            const [loading, setLoading] = useState(true);
-
-            useEffect(() => {
-                fetch(GOOGLE_SHEET_CSV_URL)
-                    .then(res => res.text())
-                    .then(text => {
-                        const lines = text.split(/\r?\n/).filter(line => line.trim() !== "");
-                        const nextData = { special: [], food: [], donations: [] };
-                        
-                        // Start from index 1 to skip header
-                        for(let i = 1; i < lines.length; i++) {
-                            // Split logic handling quoted CSV fields
-                            const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"(.*)"$/, '$1').trim());
-                            
-                            if (cols.length >= 2) {
-                                const name = cols[0];
-                                const category = cols[1].toLowerCase(); // B Column
-                                
-                                if (name) {
-                                    // 条件を少し広げて、日本語の「特別」「継続」等が含まれていてもヒットするように修正
-                                    if (category.includes('special') || category.includes('特別') || category.includes('継続')) {
-                                        nextData.special.push(name);
-                                    } else if (category.includes('food') || category.includes('食材')) {
-                                        nextData.food.push(name);
-                                    } else if (category.includes('donation') || category.includes('寄付')) {
-                                        nextData.donations.push(name);
-                                    }
-                                }
-                            }
-                        }
-                        setData(nextData);
-                        setLoading(false);
-                    })
-                    .catch(err => {
-                        console.error("Fetch error:", err);
-                        setLoading(false);
-                    });
-            }, []);
-
-            if (loading) return (
-                <div className="flex flex-col items-center justify-center py-32 animate-pulse">
-                    <div className="text-orange-400 animate-spin mb-4"><Icon name="loader" size={48} /></div>
-                    <p className="text-orange-400 font-bold tracking-widest text-sm">LOADING...</p>
-                </div>
-            );
-
+        // Accepts data via props instead of fetching internally
+        const SupportersSection = ({ data }) => {
             return (
                 <div className="space-y-16 animate-fade-in-up pb-12">
                     <div className="text-center space-y-4">
@@ -292,7 +210,7 @@
                         </p>
                     </div>
 
-                    {/* Special Supporters - Always render to verify placement, show placeholder if empty */}
+                    {/* Special Supporters */}
                     <div className="relative">
                         <div className="absolute inset-0 bg-gradient-to-r from-yellow-200 via-orange-200 to-yellow-200 opacity-20 blur-3xl -z-10 rounded-full"></div>
                         <div className="bg-white/80 backdrop-blur-sm rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-yellow-100 text-center">
@@ -367,18 +285,74 @@
         // --- Main App ---
         const App = () => {
             const [activeTab, setActiveTab] = useState('home');
+            const [supportersData, setSupportersData] = useState({ special: [], food: [], donations: [] });
+            const [activitiesData, setActivitiesData] = useState([]);
+            const [loading, setLoading] = useState(true);
+
+            // Fetch data once at the top level
+            useEffect(() => {
+                fetch(GOOGLE_SHEET_CSV_URL)
+                    .then(res => res.text())
+                    .then(text => {
+                        const lines = text.split(/\r?\n/).filter(line => line.trim() !== "");
+                        const nextSupporters = { special: [], food: [], donations: [] };
+                        const nextActivities = [];
+                        
+                        // Start from index 1 to skip header
+                        for(let i = 1; i < lines.length; i++) {
+                            const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"(.*)"$/, '$1').trim());
+                            
+                            if (cols.length >= 2) {
+                                const val1 = cols[0]; // Name or URL
+                                const category = cols[1].toLowerCase(); 
+                                const val3 = cols[2]; // Caption or extra
+                                
+                                if (val1) {
+                                    // Activity Images
+                                    if (category.includes('activity') || category.includes('活動')) {
+                                        nextActivities.push({
+                                            url: getGoogleDriveImageUrl(val1),
+                                            caption: val3 || ""
+                                        });
+                                    } 
+                                    // Supporters
+                                    else if (category.includes('special') || category.includes('特別') || category.includes('継続')) {
+                                        nextSupporters.special.push(val1);
+                                    } else if (category.includes('food') || category.includes('食材')) {
+                                        nextSupporters.food.push(val1);
+                                    } else if (category.includes('donation') || category.includes('寄付')) {
+                                        nextSupporters.donations.push(val1);
+                                    }
+                                }
+                            }
+                        }
+                        setSupportersData(nextSupporters);
+                        setActivitiesData(nextActivities);
+                        setLoading(false);
+                    })
+                    .catch(err => {
+                        console.error("Fetch error:", err);
+                        setLoading(false);
+                    });
+            }, []);
 
             // Scroll to top when tab changes
             useEffect(() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }, [activeTab]);
 
+            // Check if any supporters exist
+            const hasSupporters = supportersData.special.length > 0 || 
+                                  supportersData.food.length > 0 || 
+                                  supportersData.donations.length > 0;
+
             const navItems = [
                 { id: 'home', label: 'ホーム', icon: 'heart' },
                 { id: 'about', label: '想い', icon: 'user' },
-                { id: 'supporters', label: '支援者', icon: 'award' },
+                // Only include 'supporters' tab if there is data
+                hasSupporters ? { id: 'supporters', label: '支援者', icon: 'award' } : null,
                 { id: 'contact', label: '参加', icon: 'message-circle' },
-            ];
+            ].filter(Boolean); // Remove nulls
 
             return (
                 <div className="min-h-screen pb-20 selection:bg-orange-200 selection:text-orange-900">
@@ -389,7 +363,7 @@
                                 className="flex items-center gap-3 cursor-pointer group" 
                                 onClick={() => setActiveTab('home')}
                             >
-                                {/* ロゴ画像: エラー時は元のアイコンを表示 */}
+                                {/* Logo */}
                                 <img 
                                     src="logo.png" 
                                     alt="みらいごはん食堂" 
@@ -451,7 +425,6 @@
                             <div className="animate-fade-in-up space-y-16">
                                 {/* Hero Section */}
                                 <section className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-orange-200/50 bg-[#FF8C42] text-white p-10 md:p-24 text-center">
-                                    {/* Decorative background shapes */}
                                     <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
                                         <div className="absolute top-[-50px] left-[-50px] w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
                                         <div className="absolute bottom-[-50px] right-[-50px] w-80 h-80 bg-orange-400/30 rounded-full blur-3xl"></div>
@@ -473,7 +446,7 @@
                                 </section>
                                 
                                 {/* Activity Slideshow */}
-                                <ActivitySection />
+                                <ActivitySection activities={activitiesData} />
 
                                 {/* Info Grid */}
                                 <div className="grid md:grid-cols-2 gap-6 md:gap-8">
@@ -544,18 +517,15 @@
                                 <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-8 items-center">
                                     <div className="relative">
                                         <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-lg overflow-hidden relative bg-orange-100 flex-shrink-0">
-                                            {/* 写真読み込み: ファイル名を representative.jpg と想定 */}
                                             <img 
                                                 src="representative.jpg" 
                                                 alt="代表 内田孔明" 
                                                 className="w-full h-full object-cover"
                                                 onError={(e) => {
-                                                    // 画像読み込みエラー時にアイコンを表示するフォールバック処理
                                                     e.target.style.display = 'none';
                                                     e.target.nextSibling.style.display = 'flex';
                                                 }}
                                             />
-                                            {/* フォールバック用アイコン */}
                                             <div className="hidden absolute inset-0 flex items-center justify-center text-orange-500 bg-orange-100 w-full h-full" style={{display: 'none'}}>
                                                 <Icon name="user" size={80} />
                                             </div>
@@ -580,7 +550,7 @@
                             </div>
                         )}
 
-                        {activeTab === 'supporters' && <SupportersSection />}
+                        {activeTab === 'supporters' && <SupportersSection data={supportersData} />}
 
                         {activeTab === 'contact' && (
                             <div className="animate-fade-in-up max-w-3xl mx-auto text-center pb-12">
