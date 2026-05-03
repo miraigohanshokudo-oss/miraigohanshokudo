@@ -123,7 +123,8 @@
                 "chevron-right": <path d="m9 18 6-6-6-6" />,
                 leaf: <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />,
                 sparkles: <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L12 3Z" />,
-                camera: <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                camera: <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />,
+                crown: <path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.518l4.276 3.664a1 1 0 0 0 1.516-.294z" />
             };
             return (
                 <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -217,23 +218,56 @@
                         <div className="absolute inset-0 bg-gradient-to-r from-yellow-200 via-orange-200 to-yellow-200 opacity-20 blur-3xl -z-10 rounded-full"></div>
                         <div className="bg-white/80 backdrop-blur-sm rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-yellow-100 text-center">
                             <div className="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 px-6 py-2 rounded-full font-bold mb-8">
-                                <Icon name="award" size={20} className="text-yellow-600" /> 特別協賛・継続支援
+                                <Icon name="award" size={20} className="text-yellow-600" /> ご協賛・ご支援
                             </div>
                             
-                            {data.special.length > 0 ? (
-                                <div className="flex flex-wrap justify-center gap-4">
-                                    {data.special.map((name, i) => (
-                                        <div key={i} className="group bg-gradient-to-br from-yellow-50 to-white border border-yellow-200 px-6 py-4 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center gap-3">
-                                            <div className="bg-yellow-100 p-2 rounded-full group-hover:scale-110 transition-transform">
-                                                <Icon name="heart" size={16} className="text-yellow-600 fill-yellow-600" />
+                            <div className="space-y-6">
+                                {/* 特別協賛 (Platinum) */}
+                                {data.special.platinum.length > 0 && (
+                                    <div className="flex flex-wrap justify-center gap-4">
+                                        {data.special.platinum.map((name, i) => (
+                                            <div key={i} className="group bg-gradient-to-br from-yellow-100 to-white border-4 border-yellow-400 px-8 py-5 rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center gap-3">
+                                                <div className="bg-yellow-200 p-2 rounded-full group-hover:scale-110 transition-transform">
+                                                    <Icon name="crown" size={24} className="text-yellow-600" />
+                                                </div>
+                                                <span className="font-black text-xl text-gray-800">{name}</span>
                                             </div>
-                                            <span className="font-bold text-lg text-gray-700">{name}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : (
-                                <p className="text-gray-400">現在、表示するデータがありません。</p>
-                            )}
+                                        ))}
+                                    </div>
+                                )}
+                                
+                                {/* ちょっといい協賛 (Gold) */}
+                                {data.special.gold.length > 0 && (
+                                    <div className="flex flex-wrap justify-center gap-4">
+                                        {data.special.gold.map((name, i) => (
+                                            <div key={i} className="group bg-gradient-to-br from-yellow-50 to-white border-4 border-yellow-200 px-6 py-4 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center gap-3">
+                                                <div className="bg-yellow-100 p-2 rounded-full group-hover:scale-110 transition-transform">
+                                                    <Icon name="award" size={16} className="text-yellow-600 fill-yellow-600" />
+                                                </div>
+                                                <span className="font-bold text-lg text-gray-700">{name}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                                
+                                {/* 通常協賛 (Silver) */}
+                                {data.special.silver.length > 0 && (
+                                    <div className="flex flex-wrap justify-center gap-4">
+                                        {data.special.silver.map((name, i) => (
+                                            <div key={i} className="group bg-white border border-gray-100 px-5 py-3 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center gap-2">
+                                                <div className="bg-gray-50 p-1.5 rounded-full group-hover:scale-110 transition-transform">
+                                                    <Icon name="heart" size={14} className="text-gray-400 fill-gray-400" />
+                                                </div>
+                                                <span className="font-medium text-base text-gray-600">{name}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                                
+                                {data.special.platinum.length === 0 && data.special.gold.length === 0 && data.special.silver.length === 0 && (
+                                    <p className="text-gray-400">現在、表示するデータがありません。</p>
+                                )}
+                            </div>
                         </div>
                     </div>
 
@@ -287,7 +321,7 @@
         // --- Main App ---
         const App = () => {
             const [activeTab, setActiveTab] = useState('home');
-            const [supportersData, setSupportersData] = useState({ special: [], food: [], donations: [] });
+            const [supportersData, setSupportersData] = useState({ special: { platinum: [], gold: [], silver: [] }, food: [], donations: [] });
             const [activitiesData, setActivitiesData] = useState([]);
             const [loading, setLoading] = useState(true);
 
@@ -297,7 +331,7 @@
                     .then(res => res.text())
                     .then(text => {
                         const lines = text.split(/\r?\n/).filter(line => line.trim() !== "");
-                        const nextSupporters = { special: [], food: [], donations: [] };
+                        const nextSupporters = { special: { platinum: [], gold: [], silver: [] }, food: [], donations: [] };
                         const nextActivities = [];
                         
                         // Start from index 1 to skip header
@@ -319,8 +353,12 @@
                                         });
                                     } 
                                     // Supporters
-                                    else if (category.includes('special') || category.includes('特別') || category.includes('継続')) {
-                                        nextSupporters.special.push(val1);
+                                    else if (category.includes('特別協賛') || category.includes('特別') || category.includes('special')) {
+                                        nextSupporters.special.platinum.push(val1);
+                                    } else if (category.includes('ちょっといい協賛')) {
+                                        nextSupporters.special.gold.push(val1);
+                                    } else if (category.includes('通常協賛') || category.includes('継続')) {
+                                        nextSupporters.special.silver.push(val1);
                                     } else if (category.includes('food') || category.includes('食材')) {
                                         nextSupporters.food.push(val1);
                                     } else if (category.includes('donation') || category.includes('寄付')) {
@@ -345,7 +383,7 @@
             }, [activeTab]);
 
             // Check if any supporters exist
-            const hasSupporters = supportersData.special.length > 0 || 
+            const hasSupporters = (supportersData.special.platinum.length > 0 || supportersData.special.gold.length > 0 || supportersData.special.silver.length > 0) || 
                                   supportersData.food.length > 0 || 
                                   supportersData.donations.length > 0;
 
@@ -461,10 +499,14 @@
                                                 </div>
                                                 <h3 className="text-2xl font-bold text-gray-800">開催予定カレンダー</h3>
                                             </div>
-                                            <div className="space-y-6 pl-2">
-                                                <div className="w-full h-64 rounded-xl overflow-hidden border border-gray-100 relative">
+                                            <div className="space-y-4 pl-2">
+                                                <div className="flex gap-3 items-center bg-orange-50 p-3 rounded-xl border border-orange-100 mb-2">
+                                                    <div className="text-orange-500"><Icon name="clock" size={18} /></div>
+                                                    <p className="font-bold text-gray-700 text-sm md:text-base">原則 毎月第3日曜日 開催</p>
+                                                </div>
+                                                <div className="w-full h-96 md:h-[450px] rounded-xl overflow-hidden border border-gray-100 relative bg-white">
                                                     <iframe 
-                                                        src="https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FTokyo&showTitle=0&showNav=1&showDate=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=AGENDA&src=7b5c37d464468c3b178e63ba9b23e30688b263956f384c0b3fec95bc49d9ebca%40group.calendar.google.com&color=%23F6BF26" 
+                                                        src="https://calendar.google.com/calendar/embed?height=500&wkst=1&bgcolor=%23ffffff&ctz=Asia/Tokyo&showTitle=0&showNav=1&showDate=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=MONTH&src=7b5c37d464468c3b178e63ba9b23e30688b263956f384c0b3fec95bc49d9ebca%40group.calendar.google.com&color=%23F6BF26" 
                                                         style={{borderWidth: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} 
                                                         frameBorder="0" 
                                                         scrolling="no"
