@@ -542,6 +542,70 @@
                                         </button>
                                     </div>
                                 </div>
+
+                                {/* Access Map Section */}
+                                <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-gray-100/50 border border-orange-50 relative overflow-hidden">
+                                    <div className="flex items-center gap-3 mb-8">
+                                        <div className="bg-orange-100 p-3 rounded-2xl text-orange-600">
+                                            <Icon name="map-pin" size={24} />
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-gray-800">アクセス・駐車場</h3>
+                                    </div>
+                                    
+                                    <div className="grid md:grid-cols-2 gap-8 items-start">
+                                        <div className="space-y-6">
+                                            <div className="bg-orange-50 p-6 rounded-2xl border border-orange-100">
+                                                <h4 className="font-bold text-lg text-gray-800 mb-3 flex items-center gap-2">
+                                                    <span className="text-2xl">🚗</span> お車でお越しの方
+                                                </h4>
+                                                <p className="text-gray-600 leading-relaxed font-medium">
+                                                    車は施設の道路を挟んで<strong className="text-orange-600">反対側の駐車場</strong>をご利用ください。<br/>
+                                                    <span className="text-sm mt-2 block text-gray-500">
+                                                        ※マタニティや足が不自由などの方は、施設内駐車場に停めても構いませんが、一言スタッフへお声がけをお願いします。
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                                                <h4 className="font-bold text-lg text-gray-800 mb-3 flex items-center gap-2">
+                                                    <span className="text-2xl">🚲</span> 自転車でお越しの方
+                                                </h4>
+                                                <p className="text-gray-600 leading-relaxed font-medium">
+                                                    自転車は<strong className="text-blue-600">入り口（デイサービス入り口）横</strong>に停めてください。
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                                            <img src="access-map.jpg" alt="ケアハウスあいおい苑 アクセスマップ" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* FAQ Section */}
+                                <div className="space-y-8 pt-8">
+                                    <div className="text-center space-y-4">
+                                        <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-600 text-xs font-bold tracking-wider">FAQ</span>
+                                        <h2 className="text-3xl font-bold text-gray-800">よくあるご質問</h2>
+                                    </div>
+                                    <div className="grid gap-4 md:gap-6 max-w-4xl mx-auto">
+                                        {[
+                                            { q: "子どもだけで行ってもいいの？", a: "子供だけで行ってもいいですが、何かあった時のため、ご両親と連絡先が取れる状態（何かあった時に緊急連絡先のカードでも持っているなど）でお願いします。" },
+                                            { q: "大人の一人参加は浮かない？", a: "大人の参加も大歓迎です！お一人でもご友人とでもお気軽にお越しください。" },
+                                            { q: "アレルギー対応はしてる？", a: "申し訳ありませんが、現在は個別のアレルギー対応はしておりません。" },
+                                            { q: "予約しなくても食べられる？", a: "急に来ても良いように数食余りを作っていますが、フードロスを防ぐため、できる限り事前のご予約をお願いしています。" }
+                                        ].map((faq, i) => (
+                                            <div key={i} className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 card-hover">
+                                                <h4 className="font-bold text-lg text-gray-800 mb-3 flex items-start gap-3">
+                                                    <span className="text-orange-500 font-black text-2xl leading-none">Q.</span> 
+                                                    <span className="pt-1">{faq.q}</span>
+                                                </h4>
+                                                <p className="text-gray-600 leading-relaxed flex items-start gap-3">
+                                                    <span className="text-blue-500 font-black text-2xl leading-none">A.</span> 
+                                                    <span className="pt-1">{faq.a}</span>
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                         )}
 
