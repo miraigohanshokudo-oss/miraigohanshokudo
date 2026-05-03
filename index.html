@@ -448,44 +448,6 @@
                                     </div>
                                 </section>
 
-                                {/* Crowdfunding Banner - Updated for READYFOR */}
-                                <a 
-                                    href="https://readyfor.jp/projects/miraikodomosyokudo" 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    className="group block relative rounded-[2.5rem] overflow-hidden shadow-xl shadow-red-200/50 bg-gradient-to-br from-[#E60012] to-[#ff3a48] text-white p-8 md:p-10 card-hover transform transition-all duration-300 border border-red-400/50"
-                                >
-                                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
-                                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-yellow-400/20 rounded-full blur-2xl translate-y-1/3 -translate-x-1/4"></div>
-                                    
-                                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-                                        <div className="flex flex-col md:flex-row items-center md:items-start gap-6 text-center md:text-left w-full md:w-auto">
-                                            
-                                            {/* CSS Logo Icon for READYFOR */}
-                                            <div className="bg-white text-[#E60012] p-2 rounded-2xl shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform duration-300 w-16 h-16 flex items-center justify-center border-b-4 border-gray-100">
-                                                <span className="font-sans-logo font-black text-4xl leading-none pt-1">R</span>
-                                            </div>
-                                            
-                                            <div>
-                                                <span className="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-white text-[#E60012] text-xs font-bold tracking-widest mb-3 shadow-sm font-sans-logo">
-                                                    READYFOR <span className="text-gray-400 font-normal">|</span> プロジェクト挑戦中
-                                                </span>
-                                                <h3 className="text-2xl md:text-3xl font-black mb-3 tracking-tight drop-shadow-sm">
-                                                    クラウドファンディング<br className="md:hidden" />始めました！
-                                                </h3>
-                                                <p className="text-red-50 text-sm md:text-base font-medium leading-relaxed">
-                                                    みらいごはん食堂のスタートアップ資金として、<br className="hidden md:block" />
-                                                    皆様の温かいご支援をお願いいたします。
-                                                </p>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="flex-shrink-0 bg-white text-[#E60012] font-bold py-4 px-8 rounded-full shadow-lg flex items-center gap-2 group-hover:bg-red-50 group-hover:pr-6 transition-all duration-300 w-full md:w-auto justify-center">
-                                            支援ページへ <Icon name="chevron-right" size={20} className="group-hover:translate-x-1 transition-transform" />
-                                        </div>
-                                    </div>
-                                </a>
-                                
                                 {/* Activity Slideshow */}
                                 <ActivitySection activities={activitiesData} />
 
@@ -497,15 +459,17 @@
                                                 <div className="bg-orange-100 p-3 rounded-2xl text-orange-600">
                                                     <Icon name="calendar" size={24} />
                                                 </div>
-                                                <h3 className="text-2xl font-bold text-gray-800">次回開催について</h3>
+                                                <h3 className="text-2xl font-bold text-gray-800">開催予定カレンダー</h3>
                                             </div>
                                             <div className="space-y-6 pl-2">
-                                                <div className="flex gap-4 items-start">
-                                                    <div className="text-gray-300 mt-1"><Icon name="clock" size={20} /></div>
-                                                    <div>
-                                                        <p className="font-bold text-lg text-gray-700">毎月 第3日曜日</p>
-                                                        <p className="text-gray-500 font-medium">11:30 〜 13:30頃</p>
-                                                    </div>
+                                                <div className="w-full h-64 rounded-xl overflow-hidden border border-gray-100 relative">
+                                                    <iframe 
+                                                        src="https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FTokyo&showTitle=0&showNav=1&showDate=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=AGENDA&src=7b5c37d464468c3b178e63ba9b23e30688b263956f384c0b3fec95bc49d9ebca%40group.calendar.google.com&color=%23F6BF26" 
+                                                        style={{borderWidth: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} 
+                                                        frameBorder="0" 
+                                                        scrolling="no"
+                                                        title="みらいごはん食堂 開催予定"
+                                                    ></iframe>
                                                 </div>
                                                 <div className="flex gap-4 items-start">
                                                     <div className="text-gray-300 mt-1"><Icon name="map-pin" size={20} /></div>
