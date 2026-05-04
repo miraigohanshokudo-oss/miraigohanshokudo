@@ -201,6 +201,13 @@
 
         // --- Supporters Component ---
         // Accepts data via props instead of fetching internally
+        const SupporterLink = ({ item, className }) => {
+            if (item.link) {
+                return <a href={item.link} target="_blank" rel="noopener noreferrer" className={`${className} hover:text-orange-500 underline decoration-orange-300 underline-offset-4 transition-colors`}>{item.name}</a>;
+            }
+            return <span className={className}>{item.name}</span>;
+        };
+
         const SupportersSection = ({ data }) => {
             return (
                 <div className="space-y-16 animate-fade-in-up pb-12">
@@ -225,9 +232,9 @@
                                 {/* 特別協賛 (Platinum) */}
                                 {data.special.platinum.length > 0 && (
                                     <div className="flex flex-wrap justify-center gap-4">
-                                        {data.special.platinum.map((name, i) => (
+                                        {data.special.platinum.map((item, i) => (
                                             <div key={i} className="group bg-gradient-to-br from-yellow-100 to-white border-4 border-yellow-400 px-8 py-5 rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-3">
-                                                <span className="font-black text-2xl md:text-3xl text-gray-800 tracking-wider">{name}</span>
+                                                <SupporterLink item={item} className="font-black text-2xl md:text-3xl text-gray-800 tracking-wider" />
                                             </div>
                                         ))}
                                     </div>
@@ -236,9 +243,9 @@
                                 {/* ちょっといい協賛 (Gold) */}
                                 {data.special.gold.length > 0 && (
                                     <div className="flex flex-wrap justify-center gap-4">
-                                        {data.special.gold.map((name, i) => (
+                                        {data.special.gold.map((item, i) => (
                                             <div key={i} className="group bg-gradient-to-br from-yellow-50 to-white border-4 border-yellow-200 px-6 py-4 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-3">
-                                                <span className="font-bold text-xl text-gray-700">{name}</span>
+                                                <SupporterLink item={item} className="font-bold text-xl text-gray-700" />
                                             </div>
                                         ))}
                                     </div>
@@ -247,9 +254,9 @@
                                 {/* 通常協賛 (Silver) */}
                                 {data.special.silver.length > 0 && (
                                     <div className="flex flex-wrap justify-center gap-4">
-                                        {data.special.silver.map((name, i) => (
+                                        {data.special.silver.map((item, i) => (
                                             <div key={i} className="group bg-white border border-gray-100 px-5 py-3 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2">
-                                                <span className="font-medium text-base text-gray-600">{name}</span>
+                                                <SupporterLink item={item} className="font-medium text-base text-gray-600" />
                                             </div>
                                         ))}
                                     </div>
@@ -275,10 +282,10 @@
                                 <h3 className="text-xl font-bold text-gray-800">食材のご寄付（順不同）</h3>
                             </div>
                             <ul className="grid gap-3 relative z-10">
-                                {data.food.length > 0 ? data.food.map((name, i) => (
+                                {data.food.length > 0 ? data.food.map((item, i) => (
                                     <li key={i} className="flex items-center gap-3 text-gray-600 border-b border-dashed border-gray-100 pb-2 last:border-0">
                                         <div className="w-1.5 h-1.5 rounded-full bg-green-400"></div>
-                                        {name}
+                                        <SupporterLink item={item} className="" />
                                     </li>
                                 )) : <li className="text-gray-400 text-sm">現在情報の読み込み中または登録がありません</li>}
                             </ul>
@@ -297,24 +304,24 @@
                             </div>
                             <ul className="grid gap-4 relative z-10">
                                 {/* 特別寄付 */}
-                                {data.donations.platinum.map((name, i) => (
+                                {data.donations.platinum.map((item, i) => (
                                     <li key={`plat-${i}`} className="flex items-center gap-3 text-gray-800 border-b border-dashed border-gray-100 pb-3 last:border-0">
                                         <div className="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
-                                        <span className="font-black text-xl tracking-wider">{name}</span>
+                                        <SupporterLink item={item} className="font-black text-xl tracking-wider" />
                                     </li>
                                 ))}
                                 {/* ちょっといい寄付 */}
-                                {data.donations.gold.map((name, i) => (
+                                {data.donations.gold.map((item, i) => (
                                     <li key={`gold-${i}`} className="flex items-center gap-3 text-gray-700 border-b border-dashed border-gray-100 pb-2 last:border-0">
                                         <div className="w-2 h-2 rounded-full bg-blue-400"></div>
-                                        <span className="font-bold text-lg">{name}</span>
+                                        <SupporterLink item={item} className="font-bold text-lg" />
                                     </li>
                                 ))}
                                 {/* 通常寄付 */}
-                                {data.donations.silver.map((name, i) => (
+                                {data.donations.silver.map((item, i) => (
                                     <li key={`silv-${i}`} className="flex items-center gap-3 text-gray-600 border-b border-dashed border-gray-100 pb-2 last:border-0">
                                         <div className="w-1.5 h-1.5 rounded-full bg-blue-300"></div>
-                                        <span className="text-base">{name}</span>
+                                        <SupporterLink item={item} className="text-base" />
                                     </li>
                                 ))}
                                 {(data.donations.platinum.length === 0 && data.donations.gold.length === 0 && data.donations.silver.length === 0) && (
@@ -348,39 +355,41 @@
                             const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"(.*)"$/, '$1').trim());
                             
                             if (cols.length >= 2) {
-                                const val1 = cols[0]; // Name or URL (A列)
-                                const category = cols[1].toLowerCase(); // Category (B列)
-                                const val3 = cols[2]; // C列
-                                const val4 = cols[3]; // D列
+                                const val1 = cols[0] ? cols[0].trim() : ""; // A列 (名前 or 活動のコメント)
+                                const category = cols[1] ? cols[1].toLowerCase().trim() : ""; // B列
+                                const val3 = cols[2] ? cols[2].trim() : ""; // C列
+                                const val4 = cols[3] ? cols[3].trim() : ""; // D列 (リンク)
                                 
-                                if (val1) {
+                                if (category) {
                                     // Activity Images
                                     if (category.includes('activity') || category.includes('活動')) {
-                                        nextActivities.push({
-                                            url: getGoogleDriveImageUrl(val1),
-                                            caption: val4 || val3 || "" // D列を優先して表示、なければC列
-                                        });
+                                        if (val4) {
+                                            nextActivities.push({
+                                                url: getGoogleDriveImageUrl(val4),
+                                                caption: val1 || val3 || "" // A列を優先、なければC列
+                                            });
+                                        }
                                     } 
                                     // Donations (Check first to avoid '特別寄付' matching '特別')
                                     else if (category.includes('特別寄付')) {
-                                        nextSupporters.donations.platinum.push(val1);
+                                        if (val1) nextSupporters.donations.platinum.push({ name: val1, link: val4 });
                                     } else if (category.includes('ちょっといい寄付')) {
-                                        nextSupporters.donations.gold.push(val1);
+                                        if (val1) nextSupporters.donations.gold.push({ name: val1, link: val4 });
                                     } else if (category.includes('通常寄付')) {
-                                        nextSupporters.donations.silver.push(val1);
+                                        if (val1) nextSupporters.donations.silver.push({ name: val1, link: val4 });
                                     } else if (category.includes('food') || category.includes('食材')) {
-                                        nextSupporters.food.push(val1);
+                                        if (val1) nextSupporters.food.push({ name: val1, link: val4 });
                                     } 
                                     // Sponsors
                                     else if (category.includes('特別協賛') || category.includes('特別') || category.includes('special')) {
-                                        nextSupporters.special.platinum.push(val1);
+                                        if (val1) nextSupporters.special.platinum.push({ name: val1, link: val4 });
                                     } else if (category.includes('ちょっといい協賛')) {
-                                        nextSupporters.special.gold.push(val1);
+                                        if (val1) nextSupporters.special.gold.push({ name: val1, link: val4 });
                                     } else if (category.includes('通常協賛') || category.includes('継続')) {
-                                        nextSupporters.special.silver.push(val1);
+                                        if (val1) nextSupporters.special.silver.push({ name: val1, link: val4 });
                                     } else if (category.includes('donation') || category.includes('寄付')) {
                                         // Catch-all for any other generic donations
-                                        nextSupporters.donations.silver.push(val1);
+                                        if (val1) nextSupporters.donations.silver.push({ name: val1, link: val4 });
                                     }
                                 }
                             }
