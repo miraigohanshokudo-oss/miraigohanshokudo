@@ -218,7 +218,7 @@
                         <div className="absolute inset-0 bg-gradient-to-r from-yellow-200 via-orange-200 to-yellow-200 opacity-20 blur-3xl -z-10 rounded-full"></div>
                         <div className="bg-white/80 backdrop-blur-sm rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-yellow-100 text-center">
                             <div className="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 px-6 py-2 rounded-full font-bold mb-8">
-                                <Icon name="award" size={20} className="text-yellow-600" /> ご協賛・ご支援
+                                <Icon name="award" size={20} className="text-yellow-600" /> ご協賛・ご支援（順不同）
                             </div>
                             
                             <div className="space-y-6">
@@ -272,7 +272,7 @@
                                 <div className="bg-green-100 p-3 rounded-2xl text-green-600">
                                     <Icon name="leaf" />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-800">食材のご寄付</h3>
+                                <h3 className="text-xl font-bold text-gray-800">食材のご寄付（順不同）</h3>
                             </div>
                             <ul className="grid gap-3 relative z-10">
                                 {data.food.length > 0 ? data.food.map((name, i) => (
@@ -293,7 +293,7 @@
                                 <div className="bg-blue-100 p-3 rounded-2xl text-blue-600">
                                     <Icon name="heart" />
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-800">活動資金・ご寄付</h3>
+                                <h3 className="text-xl font-bold text-gray-800">活動資金・ご寄付（順不同）</h3>
                             </div>
                             <ul className="grid gap-4 relative z-10">
                                 {/* 特別寄付 */}
@@ -361,20 +361,25 @@
                                             caption: val4 || val3 || "" // D列を優先して表示、なければC列
                                         });
                                     } 
-                                    // Supporters
+                                    // Donations (Check first to avoid '特別寄付' matching '特別')
+                                    else if (category.includes('特別寄付')) {
+                                        nextSupporters.donations.platinum.push(val1);
+                                    } else if (category.includes('ちょっといい寄付')) {
+                                        nextSupporters.donations.gold.push(val1);
+                                    } else if (category.includes('通常寄付')) {
+                                        nextSupporters.donations.silver.push(val1);
+                                    } else if (category.includes('food') || category.includes('食材')) {
+                                        nextSupporters.food.push(val1);
+                                    } 
+                                    // Sponsors
                                     else if (category.includes('特別協賛') || category.includes('特別') || category.includes('special')) {
                                         nextSupporters.special.platinum.push(val1);
                                     } else if (category.includes('ちょっといい協賛')) {
                                         nextSupporters.special.gold.push(val1);
                                     } else if (category.includes('通常協賛') || category.includes('継続')) {
                                         nextSupporters.special.silver.push(val1);
-                                    } else if (category.includes('food') || category.includes('食材')) {
-                                        nextSupporters.food.push(val1);
-                                    } else if (category.includes('特別寄付')) {
-                                        nextSupporters.donations.platinum.push(val1);
-                                    } else if (category.includes('ちょっといい寄付')) {
-                                        nextSupporters.donations.gold.push(val1);
-                                    } else if (category.includes('通常寄付') || category.includes('donation') || category.includes('寄付')) {
+                                    } else if (category.includes('donation') || category.includes('寄付')) {
+                                        // Catch-all for any other generic donations
                                         nextSupporters.donations.silver.push(val1);
                                     }
                                 }
