@@ -146,20 +146,32 @@
         // --- Instagram Feed Component ---
         const InstagramSection = () => {
             useEffect(() => {
+                // SPA(タブ切り替え)で再描画するために、既存のスクリプトを削除して再読み込みする
                 const scriptId = 'curator-script';
-                if (!document.getElementById(scriptId)) {
-                    const script = document.createElement('script');
-                    script.id = scriptId;
-                    script.src = "https://cdn.curator.io/published/48187e1c-ab82-4549-87a1-e480e83d24ae.js";
-                    script.async = true;
-                    script.charset = "UTF-8";
-                    const firstScript = document.getElementsByTagName("script")[0];
-                    if (firstScript && firstScript.parentNode) {
-                        firstScript.parentNode.insertBefore(script, firstScript);
-                    } else {
-                        document.body.appendChild(script);
-                    }
+                const existingScript = document.getElementById(scriptId);
+                if (existingScript) {
+                    existingScript.remove();
                 }
+
+                // Curatorの初期化フラグが残っている場合があるのでリセット
+                if (window.Curator) {
+                    window.Curator = undefined;
+                }
+
+                const script = document.createElement('script');
+                script.id = scriptId;
+                script.src = "https://cdn.curator.io/published/48187e1c-ab82-4549-87a1-e480e83d24ae.js";
+                script.async = true;
+                script.charset = "UTF-8";
+                document.body.appendChild(script);
+
+                return () => {
+                    // タブが切り替わるときにスクリプトをクリーンアップ
+                    const scriptToRemove = document.getElementById(scriptId);
+                    if (scriptToRemove) {
+                        scriptToRemove.remove();
+                    }
+                };
             }, []);
 
             return (
