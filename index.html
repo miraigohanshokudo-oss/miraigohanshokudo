@@ -337,24 +337,82 @@
                         </div>
                     </div>
 
-                    {/* Grants & Support Programs */}
-                    <div className="mt-16 text-center space-y-6">
-                        <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-6 py-2 rounded-full font-bold">
-                            <Icon name="sparkles" size={20} className="text-orange-600" /> 助成金・ご支援プログラム
+                    {/* Bank Transfer Information */}
+                    <div className="mt-16 bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-orange-100 max-w-3xl mx-auto text-center relative overflow-hidden">
+                        <div className="absolute -right-10 -top-10 w-40 h-40 bg-orange-50 rounded-full -z-10 opacity-50"></div>
+                        <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-6 py-2 rounded-full font-bold mb-6">
+                            <Icon name="heart" size={20} className="text-orange-600 fill-orange-600" /> 支援方法・ご寄付についてのご案内
                         </div>
-                        <p className="text-gray-500 max-w-lg mx-auto leading-relaxed text-sm">
-                            みらいごはん食堂の活動を支えてくださる助成金・支援プログラムのご紹介です。
+                        <p className="text-gray-600 max-w-xl mx-auto leading-relaxed mb-8">
+                            みらいごはん食堂では、お野菜などの食べ物やお菓子、機材の直接寄付や金銭のご寄付など、様々な形での支援を承っています。<br/>
+                            ご支援・ご協賛いただける方は、下部のフォームよりご連絡いただけますと幸いです。
                         </p>
-                        <div className="flex justify-center">
-                            <div className="w-full max-w-sm bg-white rounded-[2rem] p-3 shadow-lg border border-orange-50 overflow-hidden card-hover">
-                                <img 
-                                    src="famima_sns_banner_1201-2.jpg" 
-                                    alt="ファミリーマート 助成金バナー" 
-                                    className="w-full h-auto rounded-2xl object-cover"
-                                />
+
+                        {/* Bank Details Table */}
+                        <div className="bg-orange-50/50 rounded-3xl p-6 md:p-8 border border-orange-100 max-w-xl mx-auto mb-6 text-left space-y-4">
+                            <div className="grid grid-cols-3 gap-2 border-b border-orange-100/50 pb-2">
+                                <span className="text-gray-500 font-bold text-sm">金融機関</span>
+                                <span className="col-span-2 text-gray-800 font-bold">山口銀行</span>
+                            </div>
+                            <div className="grid grid-cols-3 gap-2 border-b border-orange-100/50 pb-2">
+                                <span className="text-gray-500 font-bold text-sm">支店名</span>
+                                <span className="col-span-2 text-gray-800 font-bold">右田支店 (ミギタシテン)</span>
+                            </div>
+                            <div className="grid grid-cols-3 gap-2 border-b border-orange-100/50 pb-2">
+                                <span className="text-gray-500 font-bold text-sm">店番号</span>
+                                <span className="col-span-2 text-gray-800 font-mono font-bold">187</span>
+                            </div>
+                            <div className="grid grid-cols-3 gap-2 border-b border-orange-100/50 pb-2">
+                                <span className="text-gray-500 font-bold text-sm">口座種別・番号</span>
+                                <span className="col-span-2 text-gray-800 font-mono font-bold">普通 5051430</span>
+                            </div>
+                            <div className="grid grid-cols-3 gap-2">
+                                <span className="text-gray-500 font-bold text-sm">口座名義</span>
+                                <span className="col-span-2 text-gray-800 font-bold">みらいごはん食堂 内田孔明<br/><span className="text-xs text-gray-400 font-mono font-normal">ミライゴハンショクドウ ウチダコウメイ</span></span>
                             </div>
                         </div>
+
+                        {/* Note about tax deduction */}
+                        <div className="max-w-xl mx-auto bg-gray-50 border border-gray-200/50 rounded-2xl p-5 text-left text-xs text-gray-500 mb-8">
+                            <p className="leading-relaxed">
+                                <strong className="text-gray-700 block mb-1">⚠️ お金でのご寄付に関するご注意事項</strong>
+                                大変恐縮ですが、みらいごはん食堂は任意団体のため、寄附金控除をご活用いただくことはできません。あらかじめご了承ください。なお、領収書（電子・紙）を発行することは可能です。ご希望の際はお申し付けください。
+                            </p>
+                        </div>
+
+                        {/* Rules */}
+                        <div className="bg-white border border-gray-100 rounded-2xl p-6 text-left max-w-xl mx-auto mb-8 shadow-sm">
+                            <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                                <span className="text-orange-500">✨</span> 支援者ページへの掲載について
+                            </h4>
+                            <p className="text-sm text-gray-600 leading-relaxed mb-2">
+                                ご寄付・ご支援をいただいた皆様のお名前を本ページに掲載させていただきます。
+                            </p>
+                            <ul className="text-sm text-gray-600 list-disc pl-5 space-y-1">
+                                <li><strong>金銭のご寄付（5万円未満）</strong>：掲載期間 1年間</li>
+                                <li><strong>金銭のご寄付（5万円以上）</strong>：掲載期間 3年間</li>
+                                <li><strong>物資のご寄付（単発）</strong>：掲載期間 半年間</li>
+                                <li><strong>物資のご寄付（継続）</strong>：継続してご提供いただいている期間</li>
+                                <li>お名前の公開（希望される掲載名）、リンク先URLの有無などを選ぶことができます。</li>
+                            </ul>
+                        </div>
+
+                        {/* Action Button */}
+                        <div className="space-y-3">
+                            <a 
+                                href="https://forms.gle/NvexjN3tXw6Unm6G6" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="inline-flex items-center justify-center bg-gray-900 text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-orange-500 transition-colors duration-300 gap-2 w-full sm:w-auto"
+                            >
+                                支援・ご寄付のご連絡・報告はこちら <Icon name="chevron-right" size={18} />
+                            </a>
+                            <p className="text-xs text-gray-400">
+                                ※お振込みのご報告、または物資の寄付・ご協賛のご連絡は上記フォームよりお願いいたします。
+                            </p>
+                        </div>
                     </div>
+
                 </div>
             );
         };
@@ -375,11 +433,26 @@
                         const nextSupporters = { special: { platinum: [], gold: [], silver: [] }, food: [], donations: { platinum: [], gold: [], silver: [] } };
                         const nextActivities = [];
                         
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        
                         // Start from index 1 to skip header
                         for(let i = 1; i < lines.length; i++) {
                             const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"(.*)"$/, '$1').trim());
                             
                             if (cols.length >= 2) {
+                                // 掲示終了日（E列、インデックス 4）のチェック
+                                const val5 = cols[4] ? cols[4].trim() : "";
+                                if (val5) {
+                                    const endDate = new Date(val5.replace(/\//g, '-'));
+                                    if (!isNaN(endDate.getTime())) {
+                                        endDate.setHours(0, 0, 0, 0);
+                                        if (today > endDate) {
+                                            continue; // 掲示終了日を過ぎている場合はスキップ
+                                        }
+                                    }
+                                }
+
                                 const val1 = cols[0] ? cols[0].trim() : ""; // A列 (名前 or 活動のコメント)
                                 const category = cols[1] ? cols[1].toLowerCase().trim() : ""; // B列
                                 const val3 = cols[2] ? cols[2].trim() : ""; // C列
@@ -443,7 +516,7 @@
                 { id: 'home', label: 'ホーム', icon: 'heart' },
                 { id: 'about', label: '想い', icon: 'user' },
                 // Only include 'supporters' tab if there is data
-                hasSupporters ? { id: 'supporters', label: '支援者', icon: 'award' } : null,
+                hasSupporters ? { id: 'supporters', label: '支援者・支援について', icon: 'award' } : null,
                 { id: 'goods', label: 'グッズ', icon: 'shopping-bag' },
                 { id: 'contact', label: '参加', icon: 'message-circle' },
             ].filter(Boolean); // Remove nulls
