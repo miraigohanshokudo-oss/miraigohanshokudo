@@ -3,30 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>みらいごはん食堂 | 防府市の子ども食堂・地域食堂</title>
-    <meta name="description" content="山口県防府市のみらいごはん食堂。みんなで食べるごはんは美味しい。子ども無料、大人250円で開催中。">
-    
+    <title>みらいごはん食堂 | 防府市の子ども食堂・地域の第3の居場所</title>
+    <meta name="description" content="山口県防府市のみらいごはん食堂。子どもも大人も高齢の方も、気軽に立ち寄れる地域の「第3の居場所」。原則毎月第3日曜日開催、子ども無料・大人250円。">
+
     <!-- OGP Settings -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="みらいごはん食堂 | 防府市の子ども食堂・地域食堂">
-    <meta property="og:description" content="山口県防府市のみらいごはん食堂。みんなで食べるごはんは美味しい。子ども無料、大人250円で開催中。">
+    <meta property="og:title" content="みらいごはん食堂 | 防府市の子ども食堂・地域の第3の居場所">
+    <meta property="og:description" content="子どもも大人も高齢の方も、気軽に立ち寄れる地域の「第3の居場所」。原則毎月第3日曜日開催、子ども無料・大人250円。">
     <meta property="og:image" content="logo.png">
     <meta property="og:site_name" content="みらいごはん食堂">
-    
-    <!-- Twitter Card Settings -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="みらいごはん食堂 | 防府市の子ども食堂・地域食堂">
-    <meta name="twitter:description" content="山口県防府市のみらいごはん食堂。みんなで食べるごはんは美味しい。子ども無料、大人250円で開催中。">
-    <meta name="twitter:image" content="logo.png">
+    <meta name="google-site-verification" content="u4O0sNci7FlkvIMUHJtUUIxofOgIWXOOwc6gJb_Rj5k" />
 
-    <!-- Favicon -->
     <link rel="icon" href="favicon.png" type="image/png">
 
-    <!-- React, ReactDOM, Babel -->
+    <!-- React, ReactDOM, Babel（現行サイトと同じ構成） -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.23.5/babel.min.js"></script>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -34,42 +29,35 @@
             theme: {
                 extend: {
                     colors: {
-                        orange: {
-                            50: '#fff7ed',
-                            100: '#ffedd5',
-                            500: '#f97316',
-                            600: '#ea580c',
-                        },
-                        warm: '#fffaf0',
+                        brand: { DEFAULT: '#FF8C42', dark: '#E8702A', soft: '#FFE3CC' },
+                        cream: { DEFAULT: '#FFF8EE', deep: '#FCEBD5' },
+                        ink: { DEFAULT: '#3B2F2A', soft: '#6B5B52' },
+                        leaf: { DEFAULT: '#7BB661', soft: '#E7F3DF' },
+                        lamp: '#FFD97A',
                     },
                     fontFamily: {
                         'maru': ['"Zen Maru Gothic"', 'sans-serif'],
-                        'sans-logo': ['Helvetica', 'Arial', 'sans-serif'],
+                        'hand': ['"Klee One"', '"Zen Maru Gothic"', 'cursive'],
                     }
                 }
             }
         }
     </script>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts：本文は現行の Zen Maru Gothic、手書き風のアクセントに Klee One を追加 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Klee+One:wght@600&display=swap" rel="stylesheet">
 
     <style>
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Zen Maru Gothic', sans-serif;
-            background-color: #fffaf0; /* Warm background */
-            color: #4a4a4a;
+            background-color: #FFF8EE;
+            color: #3B2F2A;
             -webkit-font-smoothing: antialiased;
         }
-
-        /* Custom Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .animate-float { animation: float 6s ease-in-out infinite; }
+        section[id] { scroll-margin-top: 88px; }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
@@ -77,98 +65,103 @@
         }
         .animate-fade-in-up { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
+        /* ロゴがふんわり浮かぶ */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        /* ロゴの白い背景をページの色になじませる */
+        .logo-blend { mix-blend-mode: multiply; }
+
+        /* ランプの灯りがほんのり明滅 */
+        @keyframes glow {
+            0%, 100% { opacity: .55; }
+            50% { opacity: .75; }
+        }
+        .lamp-glow { animation: glow 5s ease-in-out infinite; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-float, .lamp-glow, .animate-fade-in-up, .shooting-star { animation: none !important; }
+            .animate-fade-in-up { opacity: 1; }
+        }
+
         .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 248, 238, 0.88);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 237, 213, 0.5);
         }
 
-        /* Custom Scrollbar for nicer look */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #fffaf0; }
-        ::-webkit-scrollbar-thumb { background: #fdba74; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #f97316; }
+        .card-hover { transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .3s; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 30px -12px rgba(59, 47, 42, 0.18); }
 
-        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
-        
-        /* Markdown style output */
-        .prose h3 { font-weight: bold; font-size: 1.25rem; color: #ea580c; margin-top: 1.5em; margin-bottom: 0.5em; }
-        .prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1em; }
-        .prose p { margin-bottom: 1em; }
+        /* 手描き風の下線 */
+        .hand-underline {
+            background-image: linear-gradient(transparent 62%, rgba(255, 217, 122, .8) 62%, rgba(255, 217, 122, .8) 90%, transparent 90%);
+        }
 
-        /* Carousel Scroll - Hide Scrollbar but allow scroll */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        /* Shooting Stars Animation */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] .faq-chevron { transform: rotate(180deg); }
+
+        /* 流れ星（現行の支援者ページの演出を継承） */
         @keyframes shooting-star {
-            0% {
-                transform: translateX(0) translateY(0) rotate(-45deg) scale(0);
-                opacity: 0;
-            }
-            5% {
-                transform: translateX(-50px) translateY(50px) rotate(-45deg) scale(1);
-                opacity: 0.8;
-            }
-            15% {
-                transform: translateX(-150px) translateY(150px) rotate(-45deg) scale(1);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(-300px) translateY(300px) rotate(-45deg) scale(0);
-                opacity: 0;
-            }
+            0% { transform: translateX(0) translateY(0) rotate(-45deg) scale(0); opacity: 0; }
+            5% { transform: translateX(-50px) translateY(50px) rotate(-45deg) scale(1); opacity: 0.8; }
+            15% { transform: translateX(-150px) translateY(150px) rotate(-45deg) scale(1); opacity: 0; }
+            100% { transform: translateX(-300px) translateY(300px) rotate(-45deg) scale(0); opacity: 0; }
         }
-
-        .shooting-star-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-        }
-
+        .shooting-star-container { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
         .shooting-star {
-            position: absolute;
-            height: 2px;
+            position: absolute; height: 2px;
             background: linear-gradient(-45deg, rgba(251, 146, 60, 1), rgba(251, 146, 60, 0));
             filter: drop-shadow(0 0 6px rgba(251, 146, 60, 0.8));
-            animation: shooting-star 12s ease-in-out infinite;
-            opacity: 0;
+            animation: shooting-star 12s ease-in-out infinite; opacity: 0;
         }
-
         .shooting-star:nth-child(1) { top: 5%; right: 10%; width: 100px; animation-delay: 0s; animation-duration: 8s; }
-        .shooting-star:nth-child(2) { top: 15%; right: 30%; width: 130px; animation-delay: 3s; animation-duration: 10s; }
-        .shooting-star:nth-child(3) { top: 25%; right: 5%; width: 80px; animation-delay: 1.5s; animation-duration: 7s; }
-        .shooting-star:nth-child(4) { top: 40%; right: 20%; width: 110px; animation-delay: 5s; animation-duration: 11s; }
-        .shooting-star:nth-child(5) { top: 60%; right: 35%; width: 120px; animation-delay: 7s; animation-duration: 9s; }
-        .shooting-star:nth-child(6) { top: 75%; right: 15%; width: 90px; animation-delay: 2.5s; animation-duration: 10s; }
-        .shooting-star:nth-child(7) { top: 10%; right: 40%; width: 105px; animation-delay: 4s; animation-duration: 9s; }
-        .shooting-star:nth-child(8) { top: 20%; right: 25%; width: 115px; animation-delay: 6s; animation-duration: 8s; }
-        .shooting-star:nth-child(9) { top: 35%; right: 45%; width: 95px; animation-delay: 1s; animation-duration: 11s; }
-        .shooting-star:nth-child(10) { top: 50%; right: 8%; width: 125px; animation-delay: 8s; animation-duration: 10s; }
-        .shooting-star:nth-child(11) { top: 65%; right: 28%; width: 85px; animation-delay: 3.5s; animation-duration: 7s; }
-        .shooting-star:nth-child(12) { top: 80%; right: 42%; width: 110px; animation-delay: 9.5s; animation-duration: 9s; }
+        .shooting-star:nth-child(2) { top: 20%; right: 30%; width: 130px; animation-delay: 3s; animation-duration: 10s; }
+        .shooting-star:nth-child(3) { top: 35%; right: 5%; width: 80px; animation-delay: 1.5s; animation-duration: 7s; }
+        .shooting-star:nth-child(4) { top: 50%; right: 20%; width: 110px; animation-delay: 5s; animation-duration: 11s; }
+        .shooting-star:nth-child(5) { top: 65%; right: 35%; width: 120px; animation-delay: 7s; animation-duration: 9s; }
+        .shooting-star:nth-child(6) { top: 80%; right: 15%; width: 90px; animation-delay: 2.5s; animation-duration: 10s; }
+
+        /* 写真タイル（ある日の、みらいごはん） */
+        .photo-tile { position: relative; border-radius: 1.75rem; overflow: hidden; margin: 0; }
+        .photo-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+        .photo-tile:hover img { transform: scale(1.05); }
+        .photo-tile figcaption { position: absolute; left: 12px; bottom: 12px; right: 12px; display: inline-flex; align-items: center; gap: 8px;
+            width: fit-content; max-width: calc(100% - 24px); background: rgba(255,255,255,.95); border-radius: 999px; padding: 6px 14px 6px 6px; font-weight: 700; font-size: 13px; line-height: 1.4; }
+        .photo-tile .step { flex-shrink: 0; width: 24px; height: 24px; border-radius: 999px; background: #FF8C42; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; }
+        @media (prefers-reduced-motion: reduce) { .photo-tile img, .card-hover { transition: none; } }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<meta name="google-site-verification" content="u4O0sNci7FlkvIMUHJtUUIxofOgIWXOOwc6gJb_Rj5k" />
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
+        const { useState, useEffect } = React;
 
-        // Google Sheet CSV URL
+        // ▼ 本番に反映するときは "" にする（このプレビューでは Miraigohan/ フォルダの画像を参照している）
+        const ASSET = "";
+        // 活動写真（本番では Miraigohan/img/ に置く想定。パスはそのまま使える）
+        const PHOTO = "img/";
+
+        // 現行サイトと同じ Google スプレッドシート（支援者一覧）
         const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRuejf_70rGhnlDbFuv6c2z0qhKxWiH56PaC3F1HEwIO1ADEop_YwaezbCOmgfwFlM9_XhXM6WbIoct/pub?gid=1879743093&single=true&output=csv";
+
+        const LINKS = {
+            line: "https://line.me/ti/g2/XtKt8VAP887JrKY9S0ERs1GesUh3lb5yctO5XA",
+            instagram: "https://www.instagram.com/miraigohanshokudo/",
+            supportForm: "https://forms.gle/NvexjN3tXw6Unm6G6",
+            note: "https://note.com/mraigohan_",
+            suzuri: "https://suzuri.jp/miraigohan",
+            furusato: "https://kodomo-furusato.com", // 【要確認】みらいごはん食堂の団体ページのURLがあれば差し替え
+            map: "https://www.google.com/maps/search/?api=1&query=ケアハウスあいおい苑+防府市佐野152-1",
+        };
 
         // --- Icons (Lucide style) ---
         const Icon = ({ name, size = 24, className = "" }) => {
@@ -179,937 +172,642 @@
                 "map-pin": <><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></>,
                 award: <><circle cx="12" cy="8" r="7" /><path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12" /></>,
                 "shopping-bag": <><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></>,
-                "hand-heart": <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />,
-                loader: <path d="M21 12a9 9 0 1 1-6.219-8.56" />,
                 user: <><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></>,
+                users: <><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></>,
                 utensils: <><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /><path d="M7 2v20" /><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" /></>,
                 "message-circle": <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />,
                 instagram: <><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></>,
                 "chevron-right": <path d="m9 18 6-6-6-6" />,
+                "chevron-down": <path d="m6 9 6 6 6-6" />,
                 leaf: <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />,
                 sparkles: <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L12 3Z" />,
-                camera: <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />,
-                crown: <path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.518l4.276 3.664a1 1 0 0 0 1.516-.294z" />
+                home: <><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></>,
+                building: <><rect x="4" y="2" width="16" height="20" rx="2" /><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01" /></>,
+                gift: <><rect x="3" y="8" width="18" height="4" rx="1" /><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7" /><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5" /></>,
+                pencil: <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />,
             };
             return (
-                <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
                     {icons[name] || null}
                 </svg>
             );
         };
 
-        // --- Helper: Google Drive Link Converter ---
-        const getGoogleDriveImageUrl = (url) => {
-            if (!url) return '';
-            const idMatch = url.match(/[-\w]{25,}/);
-            if (idMatch) {
-                return `https://lh3.googleusercontent.com/d/${idMatch[0]}`;
-            }
-            return url;
-        };
+        // --- 見出し（英字ラベル＋手書き風サブ） ---
+        const SectionTitle = ({ label, title, lead, center = true }) => (
+            <div className={`space-y-3 mb-10 ${center ? 'text-center' : ''}`}>
+                <p className="font-hand text-brand text-lg">{label}</p>
+                <h2 className="text-3xl md:text-4xl font-black text-ink leading-snug">{title}</h2>
+                {lead && <p className={`text-ink-soft leading-relaxed ${center ? 'max-w-xl mx-auto' : ''}`}>{lead}</p>}
+            </div>
+        );
 
-        // --- Instagram Feed Component ---
-        const InstagramSection = () => {
+        // --- Instagram（Curator）---
+        const InstagramFeed = () => {
             useEffect(() => {
-                // SPA(タブ切り替え)で再描画するために、既存のスクリプトを削除して再読み込みする
                 const scriptId = 'curator-script';
-                const existingScript = document.getElementById(scriptId);
-                if (existingScript) {
-                    existingScript.remove();
-                }
-
-                // Curatorの初期化フラグが残っている場合があるのでリセット
-                if (window.Curator) {
-                    window.Curator = undefined;
-                }
-
+                if (document.getElementById(scriptId)) return;
                 const script = document.createElement('script');
                 script.id = scriptId;
                 script.src = "https://cdn.curator.io/published/48187e1c-ab82-4549-87a1-e480e83d24ae.js";
                 script.async = true;
                 script.charset = "UTF-8";
                 document.body.appendChild(script);
-
-                return () => {
-                    // タブが切り替わるときにスクリプトをクリーンアップ
-                    const scriptToRemove = document.getElementById(scriptId);
-                    if (scriptToRemove) {
-                        scriptToRemove.remove();
-                    }
-                };
             }, []);
-
             return (
-                <div className="space-y-6 py-8 animate-fade-in-up">
-                    <div className="flex items-center gap-3 px-2 mb-4">
-                        <div className="bg-gradient-to-br from-[#FFB224] via-[#FF0E64] to-[#A025C6] p-2 rounded-xl text-white">
-                            <Icon name="instagram" size={24} />
-                        </div>
-                        <h3 className="text-2xl font-bold text-gray-800">活動の様子</h3>
-                    </div>
-                    
-                    <div className="bg-white rounded-[2rem] shadow-lg shadow-gray-100/50 p-4 md:p-8 border border-orange-50">
-                        <div id="curator-feed-default-feed-layout">
-                            <a href="https://curator.io" target="_blank" rel="noopener noreferrer" className="crt-logo crt-tag">Powered by Curator.io</a>
-                        </div>
+                <div className="bg-white rounded-[2rem] p-4 md:p-8 border border-cream-deep">
+                    <div id="curator-feed-default-feed-layout">
+                        <a href="https://curator.io" target="_blank" rel="noopener noreferrer" className="crt-logo crt-tag">Powered by Curator.io</a>
                     </div>
                 </div>
             );
         };
 
-        // --- Supporters Component ---
-        // Accepts data via props instead of fetching internally
-        const SupporterLink = ({ item, className }) => {
-            if (item.link) {
-                return <a href={item.link} target="_blank" rel="noopener noreferrer" className={`${className} hover:text-orange-500 underline decoration-orange-300 underline-offset-4 transition-colors`}>{item.name}</a>;
-            }
-            return <span className={className}>{item.name}</span>;
-        };
+        // --- 支援者一覧（データ処理は現行と同じ） ---
+        const SupporterLink = ({ item, className }) => item.link
+            ? <a href={item.link} target="_blank" rel="noopener noreferrer" className={`${className} hover:text-brand underline decoration-brand/40 underline-offset-4`}>{item.name}</a>
+            : <span className={className}>{item.name}</span>;
 
-        const SupportersSection = ({ data }) => {
+        // 支援者の皆様（現行サイトと同じ3段階：特別／ちょっといい／通常）
+        const SupportersSection = ({ data, loading }) => {
+            const sponsorCount = data.special.platinum.length + data.special.gold.length + data.special.silver.length;
+            const moneyCount = data.donations.platinum.length + data.donations.gold.length + data.donations.silver.length;
+            const emptyText = loading ? "読み込み中です…" : "現在、表示する情報がありません。";
             return (
-                <div className="space-y-16 animate-fade-in-up pb-12 relative overflow-hidden">
-                    {/* Shooting Stars background */}
+                <div className="relative">
                     <div className="shooting-star-container">
-                        <div className="shooting-star"></div>
-                        <div className="shooting-star"></div>
-                        <div className="shooting-star"></div>
-                        <div className="shooting-star"></div>
-                        <div className="shooting-star"></div>
-                        <div className="shooting-star"></div>
-                        <div className="shooting-star"></div>
-                        <div className="shooting-star"></div>
-                        <div className="shooting-star"></div>
-                        <div className="shooting-star"></div>
-                        <div className="shooting-star"></div>
-                        <div className="shooting-star"></div>
+                        {[...Array(6)].map((_, i) => <div key={i} className="shooting-star"></div>)}
                     </div>
-
-                    <div className="text-center space-y-4 relative z-10">
-                        <span className="inline-block py-1 px-3 rounded-full bg-orange-100 text-orange-600 text-xs font-bold tracking-wider">SUPPORTERS</span>
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">支援者の皆様・支援について</h2>
-                        <p className="text-gray-500 max-w-lg mx-auto leading-relaxed">
-                            みらいごはん食堂は、地域の皆様の温かいご支援により運営されています。
-                            心より感謝申し上げます。
-                        </p>
-                    </div>
-
-                    {/* Special Supporters */}
-                    <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-r from-yellow-200 via-orange-200 to-yellow-200 opacity-20 blur-3xl -z-10 rounded-full"></div>
-                        <div className="bg-white/80 backdrop-blur-sm rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-yellow-100 text-center">
-                            <div className="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 px-6 py-2 rounded-full font-bold mb-8">
-                                <Icon name="award" size={20} className="text-yellow-600" /> ご協賛・ご支援（順不同）
-                            </div>
-                            
-                            <div className="space-y-6">
-                                {/* 特別協賛 (Platinum) */}
-                                {data.special.platinum.length > 0 && (
-                                    <div className="flex flex-wrap justify-center gap-4">
-                                        {data.special.platinum.map((item, i) => (
-                                            <div key={i} className="group bg-gradient-to-br from-yellow-100 to-white border-4 border-yellow-400 px-8 py-5 rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-3">
-                                                <SupporterLink item={item} className="font-black text-2xl md:text-3xl text-gray-800 tracking-wider" />
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                                
-                                {/* ちょっといい協賛 (Gold) */}
-                                {data.special.gold.length > 0 && (
-                                    <div className="flex flex-wrap justify-center gap-4">
-                                        {data.special.gold.map((item, i) => (
-                                            <div key={i} className="group bg-gradient-to-br from-yellow-50 to-white border-4 border-yellow-200 px-6 py-4 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-3">
-                                                <SupporterLink item={item} className="font-bold text-xl text-gray-700" />
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                                
-                                {/* 通常協賛 (Silver) */}
-                                {data.special.silver.length > 0 && (
-                                    <div className="flex flex-wrap justify-center gap-4">
-                                        {data.special.silver.map((item, i) => (
-                                            <div key={i} className="group bg-white border border-gray-100 px-5 py-3 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2">
-                                                <SupporterLink item={item} className="font-medium text-base text-gray-600" />
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                                
-                                {data.special.platinum.length === 0 && data.special.gold.length === 0 && data.special.silver.length === 0 && (
-                                    <p className="text-gray-400">現在、表示するデータがありません。</p>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-                        {/* Food Donations */}
-                        <div className="bg-white rounded-[2.5rem] p-8 shadow-lg border-2 border-green-50 card-hover relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-8 opacity-5 text-green-500 transform rotate-12">
-                                <Icon name="shopping-bag" size={120} />
-                            </div>
-                            <div className="flex items-center gap-3 mb-8">
-                                <div className="bg-green-100 p-3 rounded-2xl text-green-600">
-                                    <Icon name="leaf" />
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-800">食材のご寄付（順不同）</h3>
-                            </div>
-                            <ul className="grid gap-3 relative z-10">
-                                {data.food.length > 0 ? data.food.map((item, i) => (
-                                    <li key={i} className="flex items-center gap-3 text-gray-600 border-b border-dashed border-gray-100 pb-2 last:border-0">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-green-400"></div>
-                                        <SupporterLink item={item} className="" />
-                                    </li>
-                                )) : <li className="text-gray-400 text-sm">現在情報の読み込み中または登録がありません</li>}
-                            </ul>
-                        </div>
-
-                        {/* Money Donations */}
-                        <div className="bg-white rounded-[2.5rem] p-8 shadow-lg border-2 border-blue-50 card-hover relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-8 opacity-5 text-blue-500 transform -rotate-12">
-                                <Icon name="hand-heart" size={120} />
-                            </div>
-                            <div className="flex items-center gap-3 mb-8">
-                                <div className="bg-blue-100 p-3 rounded-2xl text-blue-600">
-                                    <Icon name="heart" />
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-800">活動資金・ご寄付（順不同）</h3>
-                            </div>
-                            <ul className="grid gap-4 relative z-10">
-                                {/* 特別寄付 */}
-                                {data.donations.platinum.map((item, i) => (
-                                    <li key={`plat-${i}`} className="flex items-center gap-3 text-gray-800 border-b border-dashed border-gray-100 pb-3 last:border-0">
-                                        <div className="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
-                                        <SupporterLink item={item} className="font-black text-xl tracking-wider" />
-                                    </li>
-                                ))}
-                                {/* ちょっといい寄付 */}
-                                {data.donations.gold.map((item, i) => (
-                                    <li key={`gold-${i}`} className="flex items-center gap-3 text-gray-700 border-b border-dashed border-gray-100 pb-2 last:border-0">
-                                        <div className="w-2 h-2 rounded-full bg-blue-400"></div>
-                                        <SupporterLink item={item} className="font-bold text-lg" />
-                                    </li>
-                                ))}
-                                {/* 通常寄付 */}
-                                {data.donations.silver.map((item, i) => (
-                                    <li key={`silv-${i}`} className="flex items-center gap-3 text-gray-600 border-b border-dashed border-gray-100 pb-2 last:border-0">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-blue-300"></div>
-                                        <SupporterLink item={item} className="text-base" />
-                                    </li>
-                                ))}
-                                {(data.donations.platinum.length === 0 && data.donations.gold.length === 0 && data.donations.silver.length === 0) && (
-                                    <li className="text-gray-400 text-sm">現在情報の読み込み中または登録がありません</li>
-                                )}
-                            </ul>
-                        </div>
-                    </div>
-
-                    {/* Bank Transfer Information */}
-                    <div className="mt-16 bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-orange-100 max-w-3xl mx-auto text-center relative overflow-hidden">
-                        <div className="absolute -right-10 -top-10 w-40 h-40 bg-orange-50 rounded-full -z-10 opacity-50"></div>
-                        <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-6 py-2 rounded-full font-bold mb-6">
-                            <Icon name="heart" size={20} className="text-orange-600 fill-orange-600" /> 支援方法・ご寄付についてのご案内
-                        </div>
-                        <p className="text-gray-600 max-w-xl mx-auto leading-relaxed mb-8">
-                            みらいごはん食堂では、お野菜などの食べ物やお菓子、機材の直接寄付や金銭のご寄付など、様々な形での支援を承っています。<br/>
-                            ご支援・ご協賛いただける方は、下部のフォームよりご連絡いただけますと幸いです。
-                        </p>
-
-                        {/* Bank Details Table */}
-                        <div className="bg-orange-50/50 rounded-3xl p-6 md:p-8 border border-orange-100 max-w-xl mx-auto mb-6 text-left space-y-4">
-                            <div className="grid grid-cols-3 gap-2 border-b border-orange-100/50 pb-2">
-                                <span className="text-gray-500 font-bold text-sm">金融機関</span>
-                                <span className="col-span-2 text-gray-800 font-bold">山口銀行</span>
-                            </div>
-                            <div className="grid grid-cols-3 gap-2 border-b border-orange-100/50 pb-2">
-                                <span className="text-gray-500 font-bold text-sm">支店名</span>
-                                <span className="col-span-2 text-gray-800 font-bold">右田支店 (ミギタシテン)</span>
-                            </div>
-                            <div className="grid grid-cols-3 gap-2 border-b border-orange-100/50 pb-2">
-                                <span className="text-gray-500 font-bold text-sm">店番号</span>
-                                <span className="col-span-2 text-gray-800 font-mono font-bold">187</span>
-                            </div>
-                            <div className="grid grid-cols-3 gap-2 border-b border-orange-100/50 pb-2">
-                                <span className="text-gray-500 font-bold text-sm">口座種別・番号</span>
-                                <span className="col-span-2 text-gray-800 font-mono font-bold">普通 5051430</span>
-                            </div>
-                            <div className="grid grid-cols-3 gap-2">
-                                <span className="text-gray-500 font-bold text-sm">口座名義</span>
-                                <span className="col-span-2 text-gray-800 font-bold">みらいごはん食堂 内田孔明<br/><span className="text-xs text-gray-400 font-mono font-normal">ミライゴハンショクドウ ウチダコウメイ</span></span>
-                            </div>
-                        </div>
-
-                        {/* Note about tax deduction */}
-                        <div className="max-w-xl mx-auto bg-gray-50 border border-gray-200/50 rounded-2xl p-5 text-left text-xs text-gray-500 mb-8">
-                            <p className="leading-relaxed">
-                                <strong className="text-gray-700 block mb-1">⚠️ お金でのご寄付に関するご注意事項</strong>
-                                大変恐縮ですが、みらいごはん食堂は任意団体のため、寄附金控除をご活用いただくことはできません。あらかじめご了承ください。なお、領収書（電子・紙）を発行することは可能です。ご希望の際はお申し付けください。
+                    <div className="relative z-10 space-y-8">
+                        {/* ご協賛・ご支援 */}
+                        <div className="bg-white/90 backdrop-blur-sm rounded-[2.5rem] p-8 md:p-12 border-2 border-lamp/60 text-center shadow-xl shadow-orange-100/60">
+                            <p className="inline-flex items-center gap-2 bg-lamp/40 px-5 py-2 rounded-full font-bold mb-8">
+                                <Icon name="award" size={18} className="text-brand-dark" />ご協賛・ご支援（順不同）
                             </p>
+                            {sponsorCount === 0 ? <p className="text-ink-soft">{emptyText}</p> : (
+                                <div className="space-y-5">
+                                    {data.special.platinum.length > 0 && (
+                                        <div className="flex flex-wrap justify-center gap-4">
+                                            {data.special.platinum.map((item, i) => <div key={i} className="bg-gradient-to-br from-lamp/50 to-white border-4 border-lamp px-8 py-5 rounded-2xl"><SupporterLink item={item} className="font-black text-2xl md:text-3xl tracking-wider" /></div>)}
+                                        </div>
+                                    )}
+                                    {data.special.gold.length > 0 && (
+                                        <div className="flex flex-wrap justify-center gap-4">
+                                            {data.special.gold.map((item, i) => <div key={i} className="bg-gradient-to-br from-lamp/20 to-white border-4 border-lamp/50 px-6 py-4 rounded-2xl"><SupporterLink item={item} className="font-bold text-xl" /></div>)}
+                                        </div>
+                                    )}
+                                    {data.special.silver.length > 0 && (
+                                        <div className="flex flex-wrap justify-center gap-3">
+                                            {data.special.silver.map((item, i) => <div key={i} className="bg-white border border-cream-deep px-5 py-3 rounded-2xl"><SupporterLink item={item} className="font-medium" /></div>)}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
 
-                        {/* Rules */}
-                        <div className="bg-white border border-gray-100 rounded-2xl p-6 text-left max-w-xl mx-auto mb-8 shadow-sm">
-                            <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                                <span className="text-orange-500">✨</span> 支援者ページへの掲載について
-                            </h4>
-                            <p className="text-sm text-gray-600 leading-relaxed mb-2">
-                                ご寄付・ご支援をいただいた皆様のお名前を本ページに掲載させていただきます。
-                            </p>
-                            <ul className="text-sm text-gray-600 list-disc pl-5 space-y-1">
+                        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-start">
+                            {/* 食材のご寄付 */}
+                            <div className="bg-white rounded-[2rem] p-8 border-2 border-leaf-soft">
+                                <p className="font-black text-xl flex items-center gap-3 mb-6">
+                                    <span className="bg-leaf-soft text-leaf p-3 rounded-2xl"><Icon name="leaf" size={22} /></span>食材のご寄付（順不同）
+                                </p>
+                                <ul className="space-y-3">
+                                    {data.food.length > 0 ? data.food.map((item, i) => (
+                                        <li key={i} className="flex items-center gap-3 border-b border-dashed border-cream-deep pb-2 last:border-0">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-leaf shrink-0"></span><SupporterLink item={item} className="" />
+                                        </li>
+                                    )) : <li className="text-sm text-ink-soft">{emptyText}</li>}
+                                </ul>
+                            </div>
+                            {/* 活動資金・ご寄付 */}
+                            <div className="bg-white rounded-[2rem] p-8 border-2 border-brand-soft">
+                                <p className="font-black text-xl flex items-center gap-3 mb-6">
+                                    <span className="bg-brand-soft text-brand-dark p-3 rounded-2xl"><Icon name="heart" size={22} /></span>活動資金・ご寄付（順不同）
+                                </p>
+                                <ul className="space-y-3">
+                                    {data.donations.platinum.map((item, i) => (
+                                        <li key={`p${i}`} className="flex items-center gap-3 border-b border-dashed border-cream-deep pb-3">
+                                            <span className="w-2.5 h-2.5 rounded-full bg-brand shrink-0"></span><SupporterLink item={item} className="font-black text-xl tracking-wider" />
+                                        </li>
+                                    ))}
+                                    {data.donations.gold.map((item, i) => (
+                                        <li key={`g${i}`} className="flex items-center gap-3 border-b border-dashed border-cream-deep pb-2">
+                                            <span className="w-2 h-2 rounded-full bg-brand/70 shrink-0"></span><SupporterLink item={item} className="font-bold text-lg" />
+                                        </li>
+                                    ))}
+                                    {data.donations.silver.map((item, i) => (
+                                        <li key={`s${i}`} className="flex items-center gap-3 border-b border-dashed border-cream-deep pb-2 last:border-0">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-brand/50 shrink-0"></span><SupporterLink item={item} className="" />
+                                        </li>
+                                    ))}
+                                    {moneyCount === 0 && <li className="text-sm text-ink-soft">{emptyText}</li>}
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* 掲載ルール */}
+                        <details className="bg-white rounded-2xl border border-cream-deep p-6">
+                            <summary className="cursor-pointer font-bold flex items-center justify-between">
+                                <span>✨ 支援者ページへのお名前の掲載について</span>
+                                <Icon name="chevron-down" size={20} className="faq-chevron transition-transform" />
+                            </summary>
+                            <p className="text-sm text-ink-soft mt-4">ご寄付・ご支援をいただいた皆様のお名前を本ページに掲載させていただきます。</p>
+                            <ul className="text-sm text-ink-soft list-disc pl-5 space-y-1 mt-2">
                                 <li><strong>金銭のご寄付（5万円未満）</strong>：掲載期間 1年間</li>
                                 <li><strong>金銭のご寄付（5万円以上）</strong>：掲載期間 3年間</li>
                                 <li><strong>物資のご寄付（単発）</strong>：掲載期間 半年間</li>
                                 <li><strong>物資のご寄付（継続）</strong>：継続してご提供いただいている期間</li>
                                 <li>お名前の公開（希望される掲載名）、リンク先URLの有無などを選ぶことができます。</li>
                             </ul>
-                        </div>
+                        </details>
 
-                        {/* Action Button */}
-                        <div className="space-y-3">
-                            <a 
-                                href="https://forms.gle/NvexjN3tXw6Unm6G6" 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="inline-flex items-center justify-center bg-gray-900 text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-orange-500 transition-colors duration-300 gap-2 w-full sm:w-auto"
-                            >
-                                支援・ご寄付のご連絡・報告はこちら <Icon name="chevron-right" size={18} />
-                            </a>
-                            <p className="text-xs text-gray-400">
-                                ※お振込みのご報告、または物資の寄付・ご協賛のご連絡は上記フォームよりお願いいたします。
-                            </p>
+                        {/* 助成金 */}
+                        <div className="text-center space-y-4 pt-2">
+                            <p className="inline-flex items-center gap-2 bg-brand-soft/70 px-5 py-2 rounded-full font-bold"><Icon name="sparkles" size={18} className="text-brand-dark" />助成金・ご支援プログラム</p>
+                            <p className="text-sm text-ink-soft">みらいごはん食堂の活動を支えてくださる助成金・支援プログラムのご紹介です。</p>
+                            <img src={`${ASSET}famima_sns_banner_1201-2.jpg`} alt="ファミリーマート 助成金バナー" className="mx-auto w-full max-w-sm rounded-2xl border border-cream-deep" />
                         </div>
                     </div>
-
-                    {/* Grants & Support Programs */}
-                    <div className="mt-16 text-center space-y-6">
-                        <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-6 py-2 rounded-full font-bold">
-                            <Icon name="sparkles" size={20} className="text-orange-600" /> 助成金・ご支援プログラム
-                        </div>
-                        <p className="text-gray-500 max-w-lg mx-auto leading-relaxed text-sm">
-                            みらいごはん食堂の活動を支えてくださる助成金・支援プログラムのご紹介です。
-                        </p>
-                        <div className="flex justify-center">
-                            <div className="w-full max-w-sm bg-white rounded-[2rem] p-3 shadow-lg border border-orange-50 overflow-hidden block">
-                                <img 
-                                    src="famima_sns_banner_1201-2.jpg" 
-                                    alt="ファミリーマート 助成金バナー" 
-                                    className="w-full h-auto rounded-2xl object-cover"
-                                />
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             );
         };
 
         // --- Main App ---
         const App = () => {
-            const [activeTab, setActiveTab] = useState('home');
             const [supportersData, setSupportersData] = useState({ special: { platinum: [], gold: [], silver: [] }, food: [], donations: { platinum: [], gold: [], silver: [] } });
-            const [activitiesData, setActivitiesData] = useState([]);
+            const [menuOpen, setMenuOpen] = useState(false);
             const [loading, setLoading] = useState(true);
 
-            // Fetch data once at the top level
+            // 支援者データの読み込み（現行サイトと同じロジック）
             useEffect(() => {
                 fetch(GOOGLE_SHEET_CSV_URL)
                     .then(res => res.text())
                     .then(text => {
                         const lines = text.split(/\r?\n/).filter(line => line.trim() !== "");
-                        const nextSupporters = { special: { platinum: [], gold: [], silver: [] }, food: [], donations: { platinum: [], gold: [], silver: [] } };
-                        const nextActivities = [];
-                        
-                        const today = new Date();
-                        today.setHours(0, 0, 0, 0);
-                        
-                        // Start from index 1 to skip header
-                        for(let i = 1; i < lines.length; i++) {
+                        const next = { special: { platinum: [], gold: [], silver: [] }, food: [], donations: { platinum: [], gold: [], silver: [] } };
+                        const today = new Date(); today.setHours(0, 0, 0, 0);
+                        for (let i = 1; i < lines.length; i++) {
                             const cols = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"(.*)"$/, '$1').trim());
-                            
-                            if (cols.length >= 2) {
-                                // 掲示終了日（E列、インデックス 4）のチェック
-                                const val5 = cols[4] ? cols[4].trim() : "";
-                                if (val5) {
-                                    const endDate = new Date(val5.replace(/\//g, '-'));
-                                    if (!isNaN(endDate.getTime())) {
-                                        endDate.setHours(0, 0, 0, 0);
-                                        if (today > endDate) {
-                                            continue; // 掲示終了日を過ぎている場合はスキップ
-                                        }
-                                    }
-                                }
-
-                                const val1 = cols[0] ? cols[0].trim() : ""; // A列 (名前 or 活動のコメント)
-                                const category = cols[1] ? cols[1].toLowerCase().trim() : ""; // B列
-                                const val3 = cols[2] ? cols[2].trim() : ""; // C列
-                                const val4 = cols[3] ? cols[3].trim() : ""; // D列 (リンク)
-                                
-                                if (category) {
-                                    // Activity Images
-                                    if (category.includes('activity') || category.includes('活動')) {
-                                        if (val4) {
-                                            nextActivities.push({
-                                                url: getGoogleDriveImageUrl(val4),
-                                                caption: val1 || val3 || "" // A列を優先、なければC列
-                                            });
-                                        }
-                                    } 
-                                    // Donations (Check first to avoid '特別寄付' matching '特別')
-                                    else if (category.includes('特別寄付')) {
-                                        if (val1) nextSupporters.donations.platinum.push({ name: val1, link: val4 });
-                                    } else if (category.includes('ちょっといい寄付')) {
-                                        if (val1) nextSupporters.donations.gold.push({ name: val1, link: val4 });
-                                    } else if (category.includes('通常寄付')) {
-                                        if (val1) nextSupporters.donations.silver.push({ name: val1, link: val4 });
-                                    } else if (category.includes('food') || category.includes('食材')) {
-                                        if (val1) nextSupporters.food.push({ name: val1, link: val4 });
-                                    } 
-                                    // Sponsors
-                                    else if (category.includes('特別協賛') || category.includes('特別') || category.includes('special')) {
-                                        if (val1) nextSupporters.special.platinum.push({ name: val1, link: val4 });
-                                    } else if (category.includes('ちょっといい協賛')) {
-                                        if (val1) nextSupporters.special.gold.push({ name: val1, link: val4 });
-                                    } else if (category.includes('通常協賛') || category.includes('継続')) {
-                                        if (val1) nextSupporters.special.silver.push({ name: val1, link: val4 });
-                                    } else if (category.includes('donation') || category.includes('寄付')) {
-                                        // Catch-all for any other generic donations
-                                        if (val1) nextSupporters.donations.silver.push({ name: val1, link: val4 });
-                                    }
-                                }
+                            if (cols.length < 2) continue;
+                            const endVal = cols[4] ? cols[4].trim() : "";
+                            if (endVal) {
+                                const endDate = new Date(endVal.replace(/\//g, '-'));
+                                if (!isNaN(endDate.getTime())) { endDate.setHours(0, 0, 0, 0); if (today > endDate) continue; }
                             }
+                            const name = cols[0] ? cols[0].trim() : "";
+                            const category = cols[1] ? cols[1].toLowerCase().trim() : "";
+                            const link = cols[3] ? cols[3].trim() : "";
+                            if (!category || !name) continue;
+                            if (category.includes('activity') || category.includes('活動')) continue;
+                            else if (category.includes('特別寄付')) next.donations.platinum.push({ name, link });
+                            else if (category.includes('ちょっといい寄付')) next.donations.gold.push({ name, link });
+                            else if (category.includes('通常寄付')) next.donations.silver.push({ name, link });
+                            else if (category.includes('food') || category.includes('食材')) next.food.push({ name, link });
+                            else if (category.includes('特別協賛') || category.includes('特別') || category.includes('special')) next.special.platinum.push({ name, link });
+                            else if (category.includes('ちょっといい協賛')) next.special.gold.push({ name, link });
+                            else if (category.includes('通常協賛') || category.includes('継続')) next.special.silver.push({ name, link });
+                            else if (category.includes('donation') || category.includes('寄付')) next.donations.silver.push({ name, link });
                         }
-                        setSupportersData(nextSupporters);
-                        setActivitiesData(nextActivities);
+                        setSupportersData(next);
                         setLoading(false);
                     })
-                    .catch(err => {
-                        console.error("Fetch error:", err);
-                        setLoading(false);
-                    });
+                    .catch(err => { console.error("Fetch error:", err); setLoading(false); });
             }, []);
 
-            // Scroll to top when tab changes
-            useEffect(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, [activeTab]);
-
-            // Check if any supporters exist
-            const hasSupporters = (supportersData.special.platinum.length > 0 || supportersData.special.gold.length > 0 || supportersData.special.silver.length > 0) || 
-                                  supportersData.food.length > 0 || 
-                                  (supportersData.donations.platinum.length > 0 || supportersData.donations.gold.length > 0 || supportersData.donations.silver.length > 0);
-
             const navItems = [
-                { id: 'home', label: 'ホーム', icon: 'heart' },
-                { id: 'about', label: '想い', icon: 'user' },
-                // Only include 'supporters' tab if there is data
-                hasSupporters ? { id: 'supporters', label: '支援者・支援について', icon: 'award' } : null,
-                { id: 'goods', label: 'グッズ', icon: 'shopping-bag' },
-                { id: 'contact', label: '参加', icon: 'message-circle' },
-            ].filter(Boolean); // Remove nulls
+                { href: '#place', label: '第3の居場所' },
+                { href: '#info', label: '開催情報' },
+                { href: '#activity', label: 'ある日の食堂' },
+                { href: '#support', label: '応援する' },
+                { href: '#supporters', label: '支援者の皆様' },
+                { href: '#goods', label: 'グッズ' },
+                { href: '#faq', label: 'Q&A' },
+            ];
+
+            const faqs = [
+                { q: "子どもだけで行ってもいいの？", a: "子供だけで行ってもいいですが、何かあった時のため、ご両親と連絡先が取れる状態（何かあった時に緊急連絡先のカードでも持っているなど）でお願いします。" },
+                { q: "大人の一人参加は浮かない？", a: "大人の参加も大歓迎です！お一人でもご友人とでもお気軽にお越しください。" },
+                { q: "アレルギー対応はしてる？", a: "申し訳ありませんが、現在は個別のアレルギー対応はしておりません。" },
+                { q: "予約しなくても食べられる？", a: "急に来ても良いように数食余りを作っていますが、フードロスを防ぐため、できる限り事前のご予約をお願いしています。" },
+            ];
 
             return (
-                <div className="min-h-screen pb-20 selection:bg-orange-200 selection:text-orange-900">
-                    {/* Navigation */}
-                    <nav className="glass-nav fixed top-0 w-full z-50 px-4 py-4 transition-all duration-300">
-                        <div className="max-w-6xl mx-auto flex justify-between items-center">
-                            <div 
-                                className="flex items-center gap-3 cursor-pointer group" 
-                                onClick={() => setActiveTab('home')}
-                            >
-                                {/* Logo */}
-                                <img 
-                                    src="logo.png" 
-                                    alt="みらいごはん食堂" 
-                                    className="h-10 w-auto object-contain group-hover:scale-105 transition-transform"
-                                    onError={(e) => {
-                                        e.target.style.display = 'none';
-                                        e.target.nextSibling.style.display = 'block';
-                                    }}
-                                />
-                                <div className="hidden bg-gradient-to-br from-orange-400 to-orange-600 p-2 rounded-xl text-white shadow-lg shadow-orange-200 group-hover:scale-105 transition-transform" style={{display: 'none'}}>
-                                    <Icon name="utensils" size={20} className="fill-white/20" />
-                                </div>
-                                <span className="font-bold text-lg md:text-xl tracking-tight text-gray-800 group-hover:text-orange-600 transition-colors">
-                                    みらいごはん食堂
-                                </span>
-                            </div>
-                            
-                            {/* Desktop Nav */}
-                            <div className="hidden md:flex bg-orange-50/50 p-1 rounded-full border border-orange-100/50">
-                                {navItems.map((item) => (
-                                    <button 
-                                        key={item.id}
-                                        onClick={() => setActiveTab(item.id)} 
-                                        className={`px-6 py-2 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2 ${
-                                            activeTab === item.id 
-                                            ? 'bg-white text-orange-600 shadow-sm ring-1 ring-orange-100' 
-                                            : 'text-gray-500 hover:text-orange-500 hover:bg-white/50'
-                                        }`}
-                                    >
-                                        {activeTab === item.id && <Icon name={item.icon} size={14} />}
-                                        {item.label}
-                                    </button>
-                                ))}
-                            </div>
+                <div className="min-h-screen pb-24 md:pb-0 selection:bg-brand-soft">
 
-                            {/* Mobile Nav Indicator (Simple) */}
-                            <button className="md:hidden p-2 text-gray-600 bg-white rounded-full shadow-sm border border-gray-100" onClick={() => setActiveTab('contact')}>
-                                <span className="text-xs font-bold px-2">予約</span>
+                    {/* ===== ヘッダー：予約と応援のボタンを常に表示 ===== */}
+                    <header className="glass-nav fixed top-0 w-full z-50 border-b border-cream-deep">
+                        <div className="max-w-6xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between gap-4">
+                            <a href="#top" className="flex items-center gap-2 shrink-0">
+                                <img src={`${ASSET}logo.png`} alt="みらいごはん食堂" className="logo-blend h-9 md:h-11 w-auto" />
+                                <span className="font-black text-lg md:text-xl">みらいごはん食堂</span>
+                            </a>
+                            <nav className="hidden xl:flex items-center gap-5 text-sm font-bold text-ink-soft whitespace-nowrap">
+                                {navItems.map(item => <a key={item.href} href={item.href} className="hover:text-brand transition-colors">{item.label}</a>)}
+                            </nav>
+                            <div className="hidden md:flex items-center gap-2">
+                                <a href="#support" className="whitespace-nowrap px-5 py-2.5 rounded-full border-2 border-brand text-brand font-bold text-sm hover:bg-brand hover:text-white transition-colors">応援する</a>
+                                <a href={LINKS.line} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap px-5 py-2.5 rounded-full bg-[#06C755] text-white font-bold text-sm hover:brightness-95 transition">参加予約（LINE）</a>
+                            </div>
+                            <button className="xl:hidden p-2 rounded-full bg-white border border-cream-deep" aria-label="メニュー" onClick={() => setMenuOpen(!menuOpen)}>
+                                <span className="block w-5 h-0.5 bg-ink mb-1.5"></span>
+                                <span className="block w-5 h-0.5 bg-ink mb-1.5"></span>
+                                <span className="block w-5 h-0.5 bg-ink"></span>
                             </button>
                         </div>
-                    </nav>
+                        {menuOpen && (
+                            <nav className="xl:hidden bg-cream border-t border-cream-deep px-6 py-4 grid grid-cols-2 gap-3 text-sm font-bold">
+                                {navItems.map(item => <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)} className="py-2">{item.label}</a>)}
+                            </nav>
+                        )}
+                    </header>
 
-                    {/* Mobile Bottom Nav */}
-                    <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-white/90 backdrop-blur-md border border-orange-100 shadow-2xl rounded-full px-6 py-3 flex gap-6 items-center">
-                         {navItems.map((item) => (
-                            <button 
-                                key={item.id}
-                                onClick={() => setActiveTab(item.id)} 
-                                className={`flex flex-col items-center gap-1 transition-colors ${activeTab === item.id ? 'text-orange-500' : 'text-gray-400'}`}
-                            >
-                                <Icon name={item.icon} size={20} className={activeTab === item.id ? 'fill-orange-100' : ''} />
-                                <span className="text-[10px] font-bold">{item.label}</span>
-                            </button>
-                        ))}
+                    {/* ===== スマホ下部：2つの行動だけを固定表示 ===== */}
+                    <div className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-cream/95 backdrop-blur border-t border-cream-deep px-4 py-3 grid grid-cols-2 gap-3">
+                        <a href="#support" className="text-center py-3 rounded-full border-2 border-brand text-brand font-bold text-sm">応援する</a>
+                        <a href={LINKS.line} target="_blank" rel="noopener noreferrer" className="text-center py-3 rounded-full bg-[#06C755] text-white font-bold text-sm">参加予約（LINE）</a>
                     </div>
 
-                    <main className="max-w-5xl mx-auto px-4 pt-28 md:pt-32">
-                        {activeTab === 'home' && (
-                            <div className="animate-fade-in-up space-y-16">
-                                {/* Hero Section */}
-                                <section className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-orange-200/50 bg-[#FF8C42] text-white p-10 md:p-24 text-center">
-                                    <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-                                        <div className="absolute top-[-50px] left-[-50px] w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-                                        <div className="absolute bottom-[-50px] right-[-50px] w-80 h-80 bg-orange-400/30 rounded-full blur-3xl"></div>
+                    <main id="top">
+                        {/* ===== ヒーロー ===== */}
+                        <section className="relative pt-24 md:pt-32 pb-10 md:pb-16 overflow-hidden">
+                            <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 md:gap-4 items-center">
+                                <div className="space-y-6 animate-fade-in-up text-center md:text-left">
+                                    <p className="inline-block bg-white border border-cream-deep px-4 py-1.5 rounded-full text-sm font-bold text-ink-soft">
+                                        山口県防府市の子ども食堂・地域食堂
+                                    </p>
+                                    <h1 className="text-4xl md:text-6xl font-black leading-tight tracking-tight">
+                                        みんなで食べる、<br />
+                                        <span className="hand-underline">ごはん</span>はおいしい。
+                                    </h1>
+                                    <p className="text-lg text-ink-soft leading-relaxed">
+                                        家でも、学校や職場でもない、<br />
+                                        もうひとつの<span className="font-bold text-brand">「第3の居場所」</span>。<br />
+                                        世代を超えて、温かい手作りごはんを一緒に囲みませんか？
+                                    </p>
+                                    <div className="flex flex-wrap justify-center md:justify-start gap-2 text-sm font-bold">
+                                        <span className="bg-white px-3 py-1.5 rounded-full border border-cream-deep flex items-center gap-1.5"><Icon name="calendar" size={16} className="text-brand" />原則 毎月第3日曜日</span>
+                                        <span className="bg-white px-3 py-1.5 rounded-full border border-cream-deep flex items-center gap-1.5"><Icon name="utensils" size={16} className="text-brand" />子ども無料・大人250円</span>
+                                        <span className="bg-white px-3 py-1.5 rounded-full border border-cream-deep flex items-center gap-1.5"><Icon name="map-pin" size={16} className="text-brand" />ケアハウスあいおい苑</span>
                                     </div>
-
-                                    <div className="relative z-10 space-y-6">
-                                        <div className="inline-block bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-sm font-bold tracking-wider mb-2 border border-white/20">
-                                            山口県防府市の子ども食堂
-                                        </div>
-                                        <h2 className="text-4xl md:text-7xl font-black leading-tight tracking-tight drop-shadow-sm">
-                                            みんなで食べる、<br/>
-                                            <span className="inline-block animate-float">ごはん</span>はおいしい。
-                                        </h2>
-                                        <p className="text-lg md:text-xl font-medium opacity-90 max-w-xl mx-auto leading-relaxed">
-                                            世代を超えて、誰もが気軽に集まれる地域の居場所。<br className="hidden md:block" />
-                                            温かい手作りごはんを一緒に囲みませんか？
-                                        </p>
-                                    </div>
-                                </section>
-
-                                {/* Instagram Feed */}
-                                <InstagramSection />
-
-                                {/* Goods Promotion Banner */}
-                                <div className="bg-gradient-to-r from-orange-400 to-orange-600 rounded-[2rem] p-8 md:p-12 shadow-xl shadow-orange-200/50 text-white flex flex-col md:flex-row items-center justify-between gap-8 card-hover relative overflow-hidden">
-                                    <div className="absolute -right-20 -top-20 opacity-10">
-                                        <Icon name="shopping-bag" size={200} />
-                                    </div>
-                                    <div className="relative z-10 text-center md:text-left space-y-3">
-                                        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold tracking-wider border border-white/20 mb-2">
-                                            <Icon name="sparkles" size={16} /> NEW GOODS
-                                        </div>
-                                        <h3 className="text-3xl font-black">公式グッズ、販売開始！</h3>
-                                        <p className="font-medium opacity-90 max-w-lg leading-relaxed">
-                                            公式キャラクター「ごはんちゃん」やロゴのアイテムが登場。1アイテムご購入につき100円が食堂へ寄付されます！
-                                        </p>
-                                    </div>
-                                    <div className="relative z-10 flex-shrink-0 w-full md:w-auto">
-                                        <button 
-                                            onClick={() => {
-                                                setActiveTab('goods');
-                                                window.scrollTo({ top: 0, behavior: 'smooth' });
-                                            }} 
-                                            className="w-full md:w-auto bg-white text-orange-600 font-bold py-4 px-8 rounded-full shadow-lg hover:bg-orange-50 transition-colors duration-300 flex items-center justify-center gap-2"
-                                        >
-                                            グッズを見る <Icon name="chevron-right" size={20} />
-                                        </button>
-                                    </div>
-                                </div>
-
-                                {/* Info Grid */}
-                                <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-                                    <div className="bg-white rounded-[2rem] p-8 shadow-lg shadow-gray-100/50 border border-orange-50 flex flex-col justify-between card-hover">
-                                        <div>
-                                            <div className="flex items-center gap-3 mb-6">
-                                                <div className="bg-orange-100 p-3 rounded-2xl text-orange-600">
-                                                    <Icon name="calendar" size={24} />
-                                                </div>
-                                                <h3 className="text-2xl font-bold text-gray-800">開催予定カレンダー</h3>
-                                            </div>
-                                            <div className="space-y-4 pl-2">
-                                                <div className="flex gap-3 items-center bg-orange-50 p-3 rounded-xl border border-orange-100 mb-2">
-                                                    <div className="text-orange-500"><Icon name="clock" size={18} /></div>
-                                                    <p className="font-bold text-gray-700 text-sm md:text-base">原則 毎月第3日曜日 開催</p>
-                                                </div>
-                                                <div className="w-full h-96 md:h-[450px] rounded-xl overflow-hidden border border-gray-100 relative bg-white">
-                                                    <iframe 
-                                                        src="https://calendar.google.com/calendar/embed?height=500&wkst=1&bgcolor=%23ffffff&ctz=Asia/Tokyo&showTitle=0&showNav=1&showDate=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=MONTH&src=7b5c37d464468c3b178e63ba9b23e30688b263956f384c0b3fec95bc49d9ebca%40group.calendar.google.com&color=%23F6BF26" 
-                                                        style={{borderWidth: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}} 
-                                                        frameBorder="0" 
-                                                        scrolling="no"
-                                                        title="みらいごはん食堂 開催予定"
-                                                    ></iframe>
-                                                </div>
-                                                <div className="flex gap-4 items-start">
-                                                    <div className="text-gray-300 mt-1"><Icon name="map-pin" size={20} /></div>
-                                                    <div>
-                                                        <p className="font-bold text-lg text-gray-700">ケアハウスあいおい苑 1階</p>
-                                                        <a href="https://www.google.com/maps/search/?api=1&query=ケアハウスあいおい苑+防府市佐野152-1" target="_blank" className="text-orange-500 text-sm font-bold underline hover:no-underline">防府市佐野152-1 (地図)</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="bg-gradient-to-br from-orange-50 to-white rounded-[2rem] p-8 shadow-lg shadow-gray-100/50 border border-orange-100 text-center flex flex-col justify-center items-center card-hover">
-                                        <div className="bg-white p-4 rounded-full shadow-sm mb-4">
-                                            <Icon name="utensils" size={32} className="text-orange-500" />
-                                        </div>
-                                        <p className="text-gray-400 font-bold text-sm tracking-widest mb-2">PARTICIPATION FEE</p>
-                                        <div className="space-y-2 mb-8">
-                                            <p className="text-4xl font-black text-gray-800">子ども <span className="text-orange-500 text-6xl">無料</span></p>
-                                            <div className="w-12 h-1 bg-gray-100 mx-auto rounded-full"></div>
-                                            <p className="text-xl font-bold text-gray-500">大人 250円</p>
-                                        </div>
-                                        <button 
-                                            onClick={() => setActiveTab('contact')} 
-                                            className="bg-gray-900 text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-orange-500 transition-colors duration-300 flex items-center gap-2"
-                                        >
-                                            参加予約する <Icon name="chevron-right" size={18} />
-                                        </button>
-                                    </div>
-                                </div>
-
-                                {/* Access Map Section */}
-                                <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-gray-100/50 border border-orange-50 relative overflow-hidden">
-                                    <div className="flex items-center gap-3 mb-8">
-                                        <div className="bg-orange-100 p-3 rounded-2xl text-orange-600">
-                                            <Icon name="map-pin" size={24} />
-                                        </div>
-                                        <h3 className="text-2xl font-bold text-gray-800">アクセス・駐車場</h3>
-                                    </div>
-                                    
-                                    <div className="grid md:grid-cols-2 gap-8 items-start">
-                                        <div className="space-y-6">
-                                            <div className="bg-orange-50 p-6 rounded-2xl border border-orange-100">
-                                                <h4 className="font-bold text-lg text-gray-800 mb-3 flex items-center gap-2">
-                                                    <span className="text-2xl">🚗</span> お車でお越しの方
-                                                </h4>
-                                                <p className="text-gray-600 leading-relaxed font-medium">
-                                                    車は施設の道路を挟んで<strong className="text-orange-600">反対側の駐車場</strong>をご利用ください。<br/>
-                                                    <span className="text-sm mt-2 block text-gray-500">
-                                                        ※マタニティや足が不自由などの方は、施設内駐車場に停めても構いませんが、一言スタッフへお声がけをお願いします。
-                                                    </span>
-                                                </p>
-                                            </div>
-                                            <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100">
-                                                <h4 className="font-bold text-lg text-gray-800 mb-3 flex items-center gap-2">
-                                                    <span className="text-2xl">🚲</span> 自転車でお越しの方
-                                                </h4>
-                                                <p className="text-gray-600 leading-relaxed font-medium">
-                                                    自転車は<strong className="text-blue-600">入り口（デイサービス入り口）横</strong>に停めてください。
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                                            <img src="access-map.jpg" alt="ケアハウスあいおい苑 アクセスマップ" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* FAQ Section */}
-                                <div className="space-y-8 pt-8">
-                                    <div className="text-center space-y-4">
-                                        <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-600 text-xs font-bold tracking-wider">FAQ</span>
-                                        <h2 className="text-3xl font-bold text-gray-800">よくあるご質問</h2>
-                                    </div>
-                                    <div className="grid gap-4 md:gap-6 max-w-4xl mx-auto">
-                                        {[
-                                            { q: "子どもだけで行ってもいいの？", a: "子供だけで行ってもいいですが、何かあった時のため、ご両親と連絡先が取れる状態（何かあった時に緊急連絡先のカードでも持っているなど）でお願いします。" },
-                                            { q: "大人の一人参加は浮かない？", a: "大人の参加も大歓迎です！お一人でもご友人とでもお気軽にお越しください。" },
-                                            { q: "アレルギー対応はしてる？", a: "申し訳ありませんが、現在は個別のアレルギー対応はしておりません。" },
-                                            { q: "予約しなくても食べられる？", a: "急に来ても良いように数食余りを作っていますが、フードロスを防ぐため、できる限り事前のご予約をお願いしています。" }
-                                        ].map((faq, i) => (
-                                            <div key={i} className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 card-hover">
-                                                <h4 className="font-bold text-lg text-gray-800 mb-3 flex items-start gap-3">
-                                                    <span className="text-orange-500 font-black text-2xl leading-none">Q.</span> 
-                                                    <span className="pt-1">{faq.q}</span>
-                                                </h4>
-                                                <p className="text-gray-600 leading-relaxed flex items-start gap-3">
-                                                    <span className="text-blue-500 font-black text-2xl leading-none">A.</span> 
-                                                    <span className="pt-1">{faq.a}</span>
-                                                </p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Bottom Navigation Links */}
-                                <div className="grid md:grid-cols-2 gap-6 pt-8 border-t border-gray-100">
-                                    <button 
-                                        onClick={() => { setActiveTab('about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                                        className="group bg-white rounded-[2rem] p-6 md:p-8 shadow-sm hover:shadow-xl hover:shadow-orange-100/50 border border-gray-100 hover:border-orange-100 transition-all duration-300 text-left flex items-center justify-between overflow-hidden relative"
-                                    >
-                                        <div className="absolute -right-8 -top-8 opacity-5 text-orange-600 group-hover:scale-110 transition-transform duration-500">
-                                            <Icon name="user" size={160} />
-                                        </div>
-                                        <div className="relative z-10">
-                                            <div className="bg-orange-100 text-orange-600 p-3 rounded-2xl inline-block mb-4">
-                                                <Icon name="user" size={24} />
-                                            </div>
-                                            <h4 className="font-black text-2xl text-gray-800 mb-2 group-hover:text-orange-600 transition-colors">私たちの想い</h4>
-                                            <p className="text-gray-500 font-medium text-sm">みらいごはん食堂が目指す「第3の居場所」について。</p>
-                                        </div>
-                                        <div className="relative z-10 flex-shrink-0 bg-gray-50 text-gray-400 p-3 rounded-full group-hover:bg-orange-500 group-hover:text-white transition-all duration-300 ml-4">
-                                            <Icon name="chevron-right" size={20} />
-                                        </div>
-                                    </button>
-
-                                    {hasSupporters && (
-                                        <button 
-                                            onClick={() => { setActiveTab('supporters'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                                            className="group bg-white rounded-[2rem] p-6 md:p-8 shadow-sm hover:shadow-xl hover:shadow-yellow-100/50 border border-gray-100 hover:border-yellow-100 transition-all duration-300 text-left flex items-center justify-between overflow-hidden relative"
-                                        >
-                                            <div className="absolute -right-8 -top-8 opacity-5 text-yellow-600 group-hover:scale-110 transition-transform duration-500">
-                                                <Icon name="award" size={160} />
-                                            </div>
-                                            <div className="relative z-10">
-                                                <div className="bg-yellow-100 text-yellow-600 p-3 rounded-2xl inline-block mb-4">
-                                                    <Icon name="award" size={24} />
-                                                </div>
-                                                <h4 className="font-black text-2xl text-gray-800 mb-2 group-hover:text-yellow-600 transition-colors">支援者の皆様・支援について</h4>
-                                                <p className="text-gray-500 font-medium text-sm">活動を支えてくださる温かいご支援のご紹介。</p>
-                                            </div>
-                                            <div className="relative z-10 flex-shrink-0 bg-gray-50 text-gray-400 p-3 rounded-full group-hover:bg-yellow-500 group-hover:text-white transition-all duration-300 ml-4">
-                                                <Icon name="chevron-right" size={20} />
-                                            </div>
-                                        </button>
-                                    )}
-                                </div>
-
-                                {/* Note Diary Banner */}
-                                <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-sm border border-orange-100 flex flex-col md:flex-row items-center justify-between gap-8 card-hover relative overflow-hidden">
-                                    <div className="absolute -right-16 -top-16 opacity-5 text-orange-400">
-                                        <Icon name="heart" size={180} />
-                                    </div>
-                                    <div className="relative z-10 text-center md:text-left space-y-3">
-                                        <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm font-bold tracking-wider mb-2">
-                                            <Icon name="sparkles" size={16} /> DIARY
-                                        </div>
-                                        <h3 className="text-3xl font-black text-gray-800">活動日記、はじめました</h3>
-                                        <p className="text-gray-500 font-medium max-w-lg leading-relaxed">
-                                            みらいごはん食堂の日々の様子や、代表・内田の想いをnoteでつづっています。
-                                        </p>
-                                    </div>
-                                    <div className="relative z-10 flex-shrink-0 w-full md:w-auto">
-                                        <a
-                                            href="https://note.com/mraigohan_"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-orange-600 transition-colors duration-300"
-                                        >
-                                            noteを読む <Icon name="chevron-right" size={20} />
+                                    <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start pt-2">
+                                        <a href={LINKS.line} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-[#06C755] text-white font-bold py-4 px-8 rounded-full shadow-lg shadow-green-200 hover:brightness-95 transition">
+                                            <Icon name="message-circle" size={20} />LINEで参加予約
+                                        </a>
+                                        <a href="#place" className="inline-flex items-center justify-center gap-2 bg-white text-ink font-bold py-4 px-8 rounded-full border-2 border-ink/10 hover:border-brand hover:text-brand transition">
+                                            私たちについて<Icon name="chevron-right" size={18} />
                                         </a>
                                     </div>
                                 </div>
-                            </div>
-                        )}
-
-                        {activeTab === 'about' && (
-                            <div className="animate-fade-in-up space-y-12">
-                                <div className="bg-white rounded-[2.5rem] p-10 md:p-16 shadow-xl shadow-orange-100/50 border border-orange-50 relative overflow-hidden">
-                                    <div className="absolute -left-10 top-0 w-24 h-full bg-orange-100/50 skew-x-12"></div>
-                                    <div className="relative z-10">
-                                        <h3 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800 flex items-center gap-3">
-                                            <span className="text-4xl">🍊</span> 私たちの想い
-                                        </h3>
-                                        <p className="text-lg md:text-xl leading-loose text-gray-600 font-medium text-justify">
-                                            「みらいごはん食堂」は、山口県防府市で活動する地域食堂です。<br/>
-                                            お腹を満たすだけでなく、心も満たされる場所。<br/>
-                                            世代を超えて誰もが気軽に集まり、温かいごはんを囲んで笑顔になれる「第3の居場所」を目指しています。
-                                        </p>
+                                <div className="relative order-first md:order-last max-w-[300px] md:max-w-lg mx-auto w-full aspect-square flex items-center justify-center">
+                                    {/* ランプの灯りのような、やわらかい光 */}
+                                    <div className="lamp-glow absolute inset-[4%] rounded-full" style={{ background: 'radial-gradient(circle at 50% 45%, rgba(255,217,122,0.95) 0%, rgba(255,217,122,0.45) 45%, rgba(255,217,122,0) 72%)' }}></div>
+                                    <div className="absolute inset-[14%] rounded-full bg-white/70"></div>
+                                    <img
+                                        src={`${ASSET}logo.png`}
+                                        alt="みらいごはん食堂のロゴ。家の中で、笑顔のごはんを家族やおじいちゃん・おばあちゃんが囲んでいる"
+                                        className="logo-blend animate-float relative w-[92%] h-auto"
+                                    />
+                                    <div className="absolute left-[-2%] bottom-[-7%] w-[23%] aspect-square rounded-[1.5rem] overflow-hidden border-[5px] border-white shadow-xl shadow-orange-200/60 -rotate-6">
+                                        <img src={`${PHOTO}s8_menu_1.jpg`} alt="ハヤシライスとコールスローサラダ" className="w-full h-full object-cover" />
                                     </div>
-                                </div>
-
-                                <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-lg border border-gray-100 flex flex-col md:flex-row gap-8 items-center">
-                                    <div className="relative">
-                                        <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-lg overflow-hidden relative bg-orange-100 flex-shrink-0">
-                                            <img 
-                                                src="representative.jpg" 
-                                                alt="代表 内田孔明" 
-                                                className="w-full h-full object-cover"
-                                                onError={(e) => {
-                                                    e.target.style.display = 'none';
-                                                    e.target.nextSibling.style.display = 'flex';
-                                                }}
-                                            />
-                                            <div className="hidden absolute inset-0 flex items-center justify-center text-orange-500 bg-orange-100 w-full h-full" style={{display: 'none'}}>
-                                                <Icon name="user" size={80} />
-                                            </div>
-                                        </div>
-                                        <div className="absolute bottom-0 right-0 bg-orange-500 text-white p-2 rounded-full border-4 border-white">
-                                            <Icon name="heart" size={16} className="fill-white" />
-                                        </div>
-                                    </div>
-                                    <div className="text-center md:text-left flex-1">
-                                        <div className="mb-4">
-                                            <p className="text-xs font-bold text-orange-500 tracking-wider mb-1">REPRESENTATIVE</p>
-                                            <h3 className="text-2xl font-bold text-gray-800">内田 孔明</h3>
-                                        </div>
-                                        <p className="text-gray-600 leading-relaxed bg-gray-50 p-6 rounded-2xl relative">
-                                            <span className="absolute -top-3 left-8 text-4xl text-gray-200">"</span>
-                                            地域の皆様の協力に支えられ、毎月温かい食事を提供できています。<br/>
-                                            一人でも多くの子どもたち、そして地域の皆様の笑顔が見られるよう、これからも活動を続けてまいります。
-                                            <span className="absolute -bottom-6 right-8 text-4xl text-gray-200">"</span>
-                                        </p>
+                                    <div className="absolute right-[-2%] top-[-4%] w-[23%] aspect-square rounded-full overflow-hidden border-[5px] border-white shadow-xl shadow-orange-200/60">
+                                        <img src={`${PHOTO}s7_meal_9.jpg`} alt="ごはんを食べる子どもたち" className="w-full h-full object-cover" />
                                     </div>
                                 </div>
                             </div>
-                        )}
+                        </section>
 
-                        {activeTab === 'supporters' && <SupportersSection data={supportersData} />}
-
-                        {activeTab === 'contact' && (
-                            <div className="animate-fade-in-up max-w-3xl mx-auto text-center pb-12">
-                                <div className="mb-12 space-y-4">
-                                    <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-blue-600 text-xs font-bold tracking-wider">CONTACT</span>
-                                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800">参加・お問い合わせ</h2>
-                                    <p className="text-gray-600">最新情報の確認やご予約は、以下の公式アカウントからお気軽にどうぞ。</p>
-                                </div>
-                                
-                                <div className="grid gap-6">
-                                    <a href="https://line.me/ti/g2/XtKt8VAP887JrKY9S0ERs1GesUh3lb5yctO5XA" target="_blank" className="group relative overflow-hidden bg-[#06C755] text-white p-1 rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:shadow-green-200 transition-all duration-300">
-                                        <div className="bg-white/10 absolute inset-0 group-hover:bg-white/0 transition-colors"></div>
-                                        <div className="relative flex items-center justify-between p-8 md:px-10">
-                                            <div className="flex items-center gap-6 text-left">
-                                                <div className="bg-white/20 p-4 rounded-2xl backdrop-blur-sm">
-                                                    <Icon name="message-circle" size={40} className="fill-white" />
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm font-bold opacity-90 mb-1">開催案内・参加予約はこちら</p>
-                                                    <p className="text-2xl md:text-3xl font-black tracking-tight">LINEオープンチャット</p>
-                                                </div>
+                        {/* ===== 3つの入口 ===== */}
+                        <section className="max-w-6xl mx-auto px-4 pb-20">
+                            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+                                {[
+                                    { icon: 'utensils', color: 'bg-brand text-white', title: '食べに行きたい', text: '開催日・場所・料金、ご予約の方法はこちら。', href: '#info', photo: 's7_meal_2.jpg', alt: 'ごはんを食べる子ども' },
+                                    { icon: 'heart', color: 'bg-lamp text-ink', title: '応援したい', text: '食材・ご寄付・ふるさと納税・グッズで応援できます。', href: '#support', photo: 's8_day_6.jpg', alt: 'たくさんのキャベツ' },
+                                    { icon: 'users', color: 'bg-leaf text-white', title: '一緒につくりたい', text: 'お手伝いやご協力のご相談は、Instagramのメッセージからどうぞ。', href: '#contact', photo: 's7_meal_3_staff.jpg', alt: '三角巾とエプロン姿で汁物をよそうスタッフ', pos: '50% 6%' },
+                                ].map(card => (
+                                    <a key={card.title} href={card.href} className="group bg-white rounded-[2rem] p-3 border border-cream-deep card-hover flex flex-col">
+                                        <div className="relative h-40 md:h-48 rounded-[1.5rem] overflow-hidden">
+                                            <img src={`${PHOTO}${card.photo}`} alt={card.alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" style={{ objectPosition: card.pos || '50% 50%' }} />
+                                            <div className={`${card.color} absolute left-3 bottom-3 p-3 rounded-2xl shadow-lg`}><Icon name={card.icon} size={22} /></div>
+                                        </div>
+                                        <div className="flex items-center gap-3 p-4 md:p-5">
+                                            <div className="flex-1">
+                                                <p className="font-black text-xl mb-1 group-hover:text-brand transition-colors">{card.title}</p>
+                                                <p className="text-sm text-ink-soft leading-relaxed">{card.text}</p>
                                             </div>
-                                            <div className="bg-white text-[#06C755] p-3 rounded-full opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                                                <Icon name="chevron-right" size={24} />
-                                            </div>
+                                            <Icon name="chevron-right" size={20} className="text-ink/30 group-hover:text-brand shrink-0" />
                                         </div>
                                     </a>
-
-                                    <a href="https://www.instagram.com/miraigohanshokudo/" target="_blank" className="group relative overflow-hidden bg-gradient-to-tr from-[#FFB224] via-[#FF0E64] to-[#A025C6] text-white p-1 rounded-[2.5rem] shadow-xl hover:shadow-2xl hover:shadow-pink-200 transition-all duration-300">
-                                        <div className="bg-black/10 absolute inset-0 group-hover:bg-black/0 transition-colors"></div>
-                                        <div className="relative flex items-center justify-between p-8 md:px-10">
-                                            <div className="flex items-center gap-6 text-left">
-                                                <div className="bg-white/20 p-4 rounded-2xl backdrop-blur-sm">
-                                                    <Icon name="instagram" size={40} />
-                                                </div>
-                                                <div>
-                                                    <p className="text-sm font-bold opacity-90 mb-1">活動報告・DMでのお問い合わせ</p>
-                                                    <p className="text-2xl md:text-3xl font-black tracking-tight">公式Instagram</p>
-                                                </div>
-                                            </div>
-                                            <div className="bg-white text-[#FF0E64] p-3 rounded-full opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                                                <Icon name="chevron-right" size={24} />
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                ))}
                             </div>
-                        )}
+                        </section>
 
-                        {activeTab === 'goods' && (
-                            <div className="animate-fade-in-up max-w-4xl mx-auto text-center pb-12">
-                                <div className="mb-12 space-y-4">
-                                    <span className="inline-block py-1 px-3 rounded-full bg-orange-50 text-orange-600 text-xs font-bold tracking-wider">OFFICIAL GOODS</span>
-                                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800">公式グッズショップ</h2>
-                                    <div className="bg-orange-50 border border-orange-100 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto text-left shadow-sm">
-                                        <p className="text-gray-700 leading-relaxed font-medium mb-4">
-                                            公式キャラクター<strong className="text-orange-600 text-lg">「ごはんちゃん」</strong>や、食堂のロゴをあしらったオリジナルグッズをSUZURIにて販売中です！
-                                        </p>
-                                        <div className="flex items-center gap-3 bg-white p-4 rounded-xl border border-orange-100 mb-4 shadow-sm">
-                                            <div className="bg-orange-100 text-orange-500 p-2 rounded-full flex-shrink-0">
-                                                <Icon name="heart" size={24} className="fill-orange-500" />
-                                            </div>
-                                            <p className="text-gray-800 font-bold">
-                                                グッズを1つ購入していただくと、<span className="text-orange-600 text-xl">100円</span>が食堂へ寄付されます。
-                                            </p>
-                                        </div>
-                                        <p className="text-gray-600 text-sm leading-relaxed">
-                                            皆様からの温かいご支援は、子どもたちへ提供する食事の食材費など、みらいごはん食堂の運営資金として大切に活用させていただきます。
-                                        </p>
-                                    </div>
-                                </div>
+                        {/* ===== 第3の居場所 ===== */}
+                        <section id="place" className="bg-white py-20 md:py-28 rounded-t-[3rem] md:rounded-t-[4rem]">
+                            <div className="max-w-5xl mx-auto px-4">
+                                <SectionTitle
+                                    label="our place"
+                                    title={<>家でも、学校でもない。<br className="md:hidden" /><span className="text-brand">第3の居場所</span>。</>}
+                                    lead="お腹を満たすだけでなく、心も満たされる場所。世代を超えて誰もが気軽に集まり、温かいごはんを囲んで笑顔になれる「第3の居場所」を目指しています。"
+                                />
 
-                                {/* Goods Showcase Gallery */}
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto px-2">
+                                {/* 1番目・2番目・3番目の居場所 */}
+                                <div className="relative grid md:grid-cols-3 gap-6 md:gap-8 items-end mb-16">
+                                    <div className="hidden md:block absolute left-[16%] right-[16%] top-1/2 border-t-4 border-dashed border-cream-deep -z-0"></div>
                                     {[
-                                        "1fba5035-4c26-4029-9924-b104d8e5e751.png",
-                                        "904bd3f8-46de-4402-9255-403987ed3da7.png",
-                                        "c07de065-b99b-4e33-81c6-c05055b34052.png"
-                                    ].map((imgSrc, idx) => (
-                                        <div key={idx} className={`bg-white rounded-3xl p-4 shadow-lg shadow-gray-100/50 border border-orange-50 transform transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-orange-200/50 ${idx === 1 ? 'sm:-translate-y-6 hover:sm:-translate-y-8' : ''}`}>
-                                            <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-orange-50 to-white aspect-square relative group flex items-center justify-center">
-                                                <div className="absolute inset-0 bg-orange-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none"></div>
-                                                <img 
-                                                    src={imgSrc} 
-                                                    alt={`公式グッズサンプル ${idx + 1}`} 
-                                                    className="max-w-full max-h-full object-contain p-4 group-hover:scale-110 transition-transform duration-700 ease-out drop-shadow-sm" 
-                                                />
+                                        { no: '1', icon: 'home', place: '家', voice: '「ただいま」', text: '家族と過ごす、いちばん身近な場所。', active: false },
+                                        { no: '2', icon: 'building', place: '学校・職場', voice: '「いってきます」', text: '学んだり、働いたりする場所。', active: false },
+                                        { no: '3', icon: 'utensils', place: 'みらいごはん食堂', voice: '「いらっしゃい」', text: '子どもも大人も高齢の方も、気負わず立ち寄れる地域の場所。', active: true },
+                                    ].map(p => (
+                                        <div key={p.no} className={`relative z-10 rounded-[2rem] p-6 md:p-8 text-center ${p.active ? 'bg-brand text-white shadow-2xl shadow-orange-200 md:scale-110 md:-translate-y-2' : 'bg-cream border border-cream-deep'}`}>
+                                            <p className={`font-hand text-sm mb-2 ${p.active ? 'text-white/90' : 'text-ink-soft'}`}>{p.no}番目の居場所</p>
+                                            <div className={`mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-3 ${p.active ? 'bg-white text-brand' : 'bg-white text-ink-soft'}`}>
+                                                <Icon name={p.icon} size={30} />
                                             </div>
+                                            <p className="font-black text-xl">{p.place}</p>
+                                            <p className={`font-hand text-lg my-1 ${p.active ? 'text-lamp' : 'text-brand'}`}>{p.voice}</p>
+                                            <p className={`text-sm leading-relaxed ${p.active ? 'text-white/95' : 'text-ink-soft'}`}>{p.text}</p>
                                         </div>
                                     ))}
                                 </div>
 
-                                <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-orange-100/50 border border-orange-50 relative overflow-hidden">
-                                    <div className="absolute -right-10 top-0 w-32 h-full bg-orange-50/50 -skew-x-12"></div>
-                                    <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
-                                        <div className="text-center md:text-left flex-1 space-y-6">
-                                            <div className="bg-orange-100 w-16 h-16 rounded-2xl flex items-center justify-center text-orange-500 mx-auto md:mx-0 mb-4">
-                                                <Icon name="shopping-bag" size={32} />
-                                            </div>
-                                            <h3 className="text-2xl md:text-3xl font-black text-gray-800 leading-tight">
-                                                ここにある写真以外にも<br/>たくさんのグッズを展開中！
-                                            </h3>
-                                            <div className="space-y-4">
-                                                <p className="text-gray-600 font-medium leading-relaxed">
-                                                    「SUZURI」の販売サイトでは、アイテムの<strong className="text-orange-600">カラーやサイズを自由に選んで</strong>ご購入いただけます。もちろんキッズサイズもあります！
-                                                </p>
-                                                <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                                                    <span className="bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-sm font-bold border border-orange-100 shadow-sm">✨ カラー豊富</span>
-                                                    <span className="bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-sm font-bold border border-orange-100 shadow-sm">👕 サイズ多数</span>
-                                                    <span className="bg-pink-50 text-pink-600 px-3 py-1 rounded-full text-sm font-bold border border-pink-100 shadow-sm">👶 キッズサイズあり</span>
-                                                </div>
-                                            </div>
+                                {/* いつもの風景 */}
+                                <figure className="relative rounded-[2.5rem] overflow-hidden mb-12 h-64 md:h-[400px]">
+                                    <img src={`${PHOTO}s7_meal_1.jpg`} alt="テーブルを囲んでごはんを食べる子どもたち" className="w-full h-full object-cover" style={{ objectPosition: '50% 60%' }} />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent"></div>
+                                    <figcaption className="absolute left-6 bottom-6 md:left-10 md:bottom-8 text-white">
+                                        <p className="font-hand text-lamp text-lg">every 3rd sunday</p>
+                                        <p className="font-black text-2xl md:text-3xl">第3日曜日の、いつもの風景。</p>
+                                    </figcaption>
+                                </figure>
+
+                                {/* 代表メッセージ */}
+                                <div className="bg-cream rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center">
+                                    <img src={`${ASSET}representative.jpg`} alt="代表 内田孔明" className="w-36 h-36 md:w-44 md:h-44 rounded-full object-cover border-4 border-white shadow-lg shrink-0" />
+                                    <div className="space-y-4">
+                                        <p className="text-lg md:text-xl leading-loose font-medium">
+                                            子ども食堂と聞くと、多くの人は「食事の支援」を思い浮かべるかもしれません。でも、私たちが創りたいのは、もっと多様な人が混ざり合う、地域の「ハブ（拠点）」です。
+                                        </p>
+                                        <p className="text-ink-soft leading-relaxed">
+                                            地域の皆様の協力に支えられ、毎月温かい食事を提供できています。一人でも多くの子どもたち、そして地域の皆様の笑顔が見られるよう、これからも活動を続けてまいります。
+                                        </p>
+                                        <p className="font-bold">代表　内田 孔明</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* ===== 開催情報 ===== */}
+                        <section id="info" className="py-20 md:py-28">
+                            <div className="max-w-6xl mx-auto px-4">
+                                <SectionTitle label="information" title="開催情報" lead="ふらっと来ても大丈夫。でも、ごはんの数を用意するために、できるだけ事前のご予約をお願いしています。" />
+                                <div className="grid lg:grid-cols-5 gap-6 items-start">
+                                    <div className="lg:col-span-3 bg-white rounded-[2rem] p-6 md:p-8 border border-cream-deep">
+                                        <p className="font-black text-xl flex items-center gap-2 mb-4"><Icon name="calendar" className="text-brand" />開催予定カレンダー</p>
+                                        <p className="inline-flex items-center gap-2 bg-brand-soft/60 px-4 py-2 rounded-full font-bold text-sm mb-4"><Icon name="clock" size={16} />原則 毎月第3日曜日 開催</p>
+                                        <div className="w-full h-96 md:h-[440px] rounded-2xl overflow-hidden border border-cream-deep relative bg-white">
+                                            <iframe
+                                                src="https://calendar.google.com/calendar/embed?height=500&wkst=1&bgcolor=%23ffffff&ctz=Asia/Tokyo&showTitle=0&showNav=1&showDate=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=MONTH&src=7b5c37d464468c3b178e63ba9b23e30688b263956f384c0b3fec95bc49d9ebca%40group.calendar.google.com&color=%23F6BF26"
+                                                style={{ borderWidth: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                                                frameBorder="0" scrolling="no" title="みらいごはん食堂 開催予定"
+                                            ></iframe>
                                         </div>
-                                        <div className="flex-shrink-0 w-full md:w-auto">
-                                            <a 
-                                                href="https://suzuri.jp/miraigohan" 
-                                                target="_blank" 
-                                                rel="noopener noreferrer" 
-                                                className="group relative inline-flex items-center justify-center overflow-hidden rounded-full p-4 px-8 font-bold text-white bg-gray-900 shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
-                                            >
-                                                <span className="absolute h-0 w-0 rounded-full bg-orange-500 transition-all duration-500 ease-out group-hover:h-56 group-hover:w-56"></span>
-                                                <span className="relative z-10 flex items-center gap-2">
-                                                    SUZURIでショップを見る <Icon name="chevron-right" size={20} />
-                                                </span>
+                                    </div>
+                                    <div className="lg:col-span-2 space-y-6">
+                                        <div className="bg-ink text-white rounded-[2rem] p-8 text-center">
+                                            <p className="font-hand text-lamp text-lg">price</p>
+                                            <p className="text-3xl font-black mt-2">子ども <span className="text-brand text-5xl">無料</span></p>
+                                            <p className="text-lg font-bold text-white/80 mt-2">大人 250円</p>
+                                            <a href={LINKS.line} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center justify-center gap-2 bg-[#06C755] text-white font-bold py-3.5 px-8 rounded-full w-full">
+                                                LINEで予約する <Icon name="chevron-right" size={18} />
                                             </a>
+                                        </div>
+                                        <div className="bg-white rounded-[2rem] p-6 md:p-8 border border-cream-deep space-y-4">
+                                            <p className="font-black text-xl flex items-center gap-2"><Icon name="map-pin" className="text-brand" />アクセス</p>
+                                            <div>
+                                                <p className="font-bold text-lg">ケアハウスあいおい苑 1階</p>
+                                                <a href={LINKS.map} target="_blank" rel="noopener noreferrer" className="text-brand text-sm font-bold underline">防府市佐野152-1（地図を開く）</a>
+                                            </div>
+                                            <img src={`${ASSET}access-map.jpg`} alt="ケアハウスあいおい苑 アクセスマップ" className="w-full rounded-2xl border border-cream-deep" />
+                                            <figure className="relative rounded-2xl overflow-hidden h-56">
+                                                <img src={`${PHOTO}s6_day_1.jpg`} alt="開催日の会場入り口の様子" className="w-full h-full object-cover" style={{ objectPosition: '50% 70%' }} />
+                                                <figcaption className="absolute left-3 bottom-3 bg-white/95 rounded-full px-4 py-1.5 text-sm font-bold">📍 開催日の入り口の様子</figcaption>
+                                            </figure>
+                                            <div className="text-sm text-ink-soft space-y-2 leading-relaxed">
+                                                <p><span className="font-bold text-ink">🚗 お車：</span>施設の道路を挟んで<strong className="text-brand-dark">反対側の駐車場</strong>をご利用ください。マタニティや足が不自由などの方は、施設内駐車場に停めても構いませんが、一言スタッフへお声がけをお願いします。</p>
+                                                <p><span className="font-bold text-ink">🚲 自転車：</span><strong className="text-brand-dark">入り口（デイサービス入り口）横</strong>に停めてください。</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        )}
+                        </section>
+
+                        {/* ===== 活動の様子 ===== */}
+                        <section id="activity" className="bg-white py-20 md:py-28">
+                            <div className="max-w-6xl mx-auto px-4">
+                                <SectionTitle label="a day at miraigohan" title="ある日の、みらいごはん。" lead="仕込みから「いただきます」まで。毎月こんなふうに、みんなでごはんをつくっています。" />
+                                <div className="grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-3 md:gap-4 md:h-[560px] mb-16">
+                                    <figure className="photo-tile col-span-2 md:col-start-3 md:row-start-1 md:col-span-2 md:row-span-2 h-72 md:h-auto">
+                                        <img src={`${PHOTO}s8_menu_1.jpg`} alt="ハヤシライスとコールスローサラダ" />
+                                        <figcaption><span className="step">4</span>できあがり！ハヤシライスとコールスローサラダ</figcaption>
+                                    </figure>
+                                    {[
+                                        { src: 'fugu_3.jpg', no: 1, text: '朝から大鍋でコトコト', alt: '大鍋で煮込まれる野菜' },
+                                        { src: 's8_day_4.jpg', no: 2, text: 'みんなで下ごしらえ', alt: 'キャベツやにんじんの下ごしらえ' },
+                                        { src: 's8_day_1.jpg', no: 3, text: '今日のメニューは黒板で', alt: '本日のメニューの黒板' },
+                                        { src: 's7_meal_9.jpg', no: 5, text: 'いただきます', alt: 'ごはんを食べる子どもたち' },
+                                    ].map(p => (
+                                        <figure key={p.no} className="photo-tile h-44 md:h-auto">
+                                            <img src={`${PHOTO}${p.src}`} alt={p.alt} />
+                                            <figcaption><span className="step">{p.no}</span>{p.text}</figcaption>
+                                        </figure>
+                                    ))}
+                                </div>
+                                <p className="font-black text-xl flex items-center gap-2 mb-4"><Icon name="instagram" className="text-brand" />Instagramの最新の様子</p>
+                                <InstagramFeed />
+                                <div className="mt-8 bg-cream rounded-[2rem] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                                    <div className="text-center md:text-left">
+                                        <p className="font-hand text-brand text-lg">diary</p>
+                                        <p className="text-2xl font-black">活動日記、はじめました</p>
+                                        <p className="text-ink-soft mt-1">みらいごはん食堂の日々の様子や、代表・内田の想いをnoteでつづっています。</p>
+                                    </div>
+                                    <a href={LINKS.note} target="_blank" rel="noopener noreferrer" className="shrink-0 inline-flex items-center gap-2 bg-ink text-white font-bold py-4 px-8 rounded-full hover:bg-brand transition-colors">
+                                        noteを読む <Icon name="chevron-right" size={18} />
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* ===== 応援する ===== */}
+                        <section id="support" className="py-20 md:py-28">
+                            <div className="max-w-6xl mx-auto px-4 space-y-8">
+                                <SectionTitle label="support us" title="みらいごはん食堂を応援する" lead="お野菜などの食べ物やお菓子、機材の直接寄付や金銭のご寄付など、様々な形での支援を承っています。" />
+
+                                {/* こどもふるさと便 3ステップ */}
+                                <div className="bg-leaf-soft rounded-[2.5rem] p-8 md:p-12">
+                                    <div className="text-center mb-8">
+                                        <p className="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full text-sm font-bold text-leaf"><Icon name="gift" size={16} />ふるさと納税で応援</p>
+                                        <h3 className="text-2xl md:text-3xl font-black mt-3">こどもふるさと便　かんたん3ステップ</h3>
+                                        <p className="text-ink-soft mt-2">いつものふるさと納税で、こども食堂に食材が届きます。返礼品も変わらず受け取れます。</p>
+                                    </div>
+                                    {/* 公式の案内画像（スマホでは横にスワイプ） */}
+                                    <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory -mx-2 px-2 pb-2">
+                                        {[
+                                            { src: 'furusato_step1.jpg', alt: 'ステップ1　いつものようにふるさと納税。寄付額はいつもとおなじ' },
+                                            { src: 'furusato_step2.jpg', alt: 'ステップ2　あなたにはこだわりの返礼品を。返礼品の質も量もいつもとおなじ' },
+                                            { src: 'furusato_step3.jpg', alt: 'ステップ3　こどもたちには応援品を。あなたが選んだ団体を通じてこどもたちへ' },
+                                        ].map(st => (
+                                            <img key={st.src} src={`${PHOTO}${st.src}`} alt={st.alt} loading="lazy" className="snap-center shrink-0 w-[78%] sm:w-[45%] md:w-full rounded-[1.75rem] shadow-sm" />
+                                        ))}
+                                    </div>
+                                    <p className="md:hidden text-center text-xs text-ink-soft mt-2">← 横にスワイプできます →</p>
+
+                                    {/* 団体の探し方 */}
+                                    <div className="mt-8 bg-white rounded-[2rem] p-4 md:p-6 grid md:grid-cols-5 gap-6 items-center">
+                                        <img src={`${PHOTO}furusato_howto.jpg`} alt="「こどもふるさと便　団体」で検索するか、こどもふるさと便のInstagramプロフィールのハイライトからサイトにアクセスできます" loading="lazy" className="md:col-span-2 w-full max-w-xs mx-auto rounded-[1.5rem]" />
+                                        <div className="md:col-span-3 text-center md:text-left space-y-4 px-2 pb-2">
+                                            <p className="font-black text-xl md:text-2xl leading-snug">寄付先に<br className="hidden md:block" />「みらいごはん食堂」を選んでください</p>
+                                            <p className="text-ink-soft text-sm leading-relaxed">「こどもふるさと便　団体」で検索するか、こどもふるさと便のInstagramのハイライトからサイトにアクセスできます。</p>
+                                            <a href={LINKS.furusato} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-leaf text-white font-bold py-4 px-8 rounded-full hover:brightness-95 whitespace-nowrap">
+                                                公式サイトを見る <Icon name="chevron-right" size={18} />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    {/* 振込 */}
+                                    <div className="bg-white rounded-[2rem] p-8 border border-cream-deep">
+                                        <p className="font-black text-xl flex items-center gap-2 mb-4"><Icon name="heart" className="text-brand" />お金でのご寄付</p>
+                                        <dl className="bg-cream rounded-2xl p-5 grid grid-cols-3 gap-y-3 text-sm">
+                                            <dt className="text-ink-soft font-bold">金融機関</dt><dd className="col-span-2 font-bold">山口銀行</dd>
+                                            <dt className="text-ink-soft font-bold">支店名</dt><dd className="col-span-2 font-bold">右田支店（ミギタシテン）</dd>
+                                            <dt className="text-ink-soft font-bold">店番号</dt><dd className="col-span-2 font-bold font-mono">187</dd>
+                                            <dt className="text-ink-soft font-bold">口座</dt><dd className="col-span-2 font-bold font-mono">普通 5051430</dd>
+                                            <dt className="text-ink-soft font-bold">口座名義</dt><dd className="col-span-2 font-bold">みらいごはん食堂 内田孔明<br /><span className="text-xs font-normal text-ink-soft">ミライゴハンショクドウ ウチダコウメイ</span></dd>
+                                        </dl>
+                                        <p className="text-xs text-ink-soft leading-relaxed mt-4">
+                                            ⚠️ みらいごはん食堂は任意団体のため、寄附金控除をご活用いただくことはできません。領収書（電子・紙）の発行は可能です。ご希望の際はお申し付けください。
+                                        </p>
+                                    </div>
+                                    {/* 食材・物資／グッズ */}
+                                    <div className="space-y-6">
+                                        <div className="bg-white rounded-[2rem] p-3 border border-cream-deep">
+                                            <div className="relative h-40 rounded-[1.5rem] overflow-hidden">
+                                                <img src={`${PHOTO}s8_day_6.jpg`} alt="たくさんのキャベツ" className="w-full h-full object-cover" />
+                                                <p className="absolute left-3 bottom-3 bg-white/95 rounded-full px-4 py-1.5 text-xs font-bold">食材は、みんなのごはんに。</p>
+                                            </div>
+                                            <div className="p-5">
+                                            <p className="font-black text-xl flex items-center gap-2 mb-3"><Icon name="leaf" className="text-leaf" />食材・物資のご寄付、ご協賛</p>
+                                            <p className="text-sm text-ink-soft leading-relaxed mb-5">お振込みのご報告、物資の寄付・ご協賛のご連絡は、こちらのフォームからお願いいたします。</p>
+                                            <a href={LINKS.supportForm} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-ink text-white font-bold py-3.5 px-6 rounded-full w-full hover:bg-brand transition-colors">
+                                                支援・ご寄付のご連絡はこちら <Icon name="chevron-right" size={18} />
+                                            </a>
+                                            </div>
+                                        </div>
+                                        <a href="#goods" className="block bg-brand text-white rounded-[2rem] p-8 card-hover">
+                                            <p className="font-black text-xl flex items-center gap-2"><Icon name="shopping-bag" />グッズを買って応援</p>
+                                            <p className="text-sm text-white/90 mt-2">1アイテムご購入につき100円が食堂へ寄付されます。</p>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <a href="#supporters" className="block text-center bg-white rounded-2xl border border-cream-deep p-5 font-bold hover:text-brand transition-colors">
+                                    ご支援くださっている皆様のご紹介はこちら <Icon name="chevron-down" size={18} className="inline" />
+                                </a>
+                            </div>
+                        </section>
+
+                        {/* ===== 支援者の皆様 ===== */}
+                        <section id="supporters" className="bg-gradient-to-b from-cream-deep/60 to-cream py-20 md:py-28 overflow-hidden">
+                            <div className="max-w-5xl mx-auto px-4">
+                                <SectionTitle
+                                    label="supporters"
+                                    title="支援者の皆様"
+                                    lead="みらいごはん食堂は、地域の皆様の温かいご支援により運営されています。心より感謝申し上げます。"
+                                />
+                                <SupportersSection data={supportersData} loading={loading} />
+                            </div>
+                        </section>
+
+                        {/* ===== グッズ ===== */}
+                        <section id="goods" className="bg-white py-20 md:py-28">
+                            <div className="max-w-5xl mx-auto px-4">
+                                <SectionTitle label="official goods" title="公式グッズ" lead="公式キャラクター「ごはんちゃん」や、食堂のロゴをあしらったオリジナルグッズをSUZURIにて販売中です。カラーやサイズを選べて、キッズサイズもあります。" />
+                                <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto hide-scrollbar snap-x pb-2">
+                                    {["1fba5035-4c26-4029-9924-b104d8e5e751.png", "904bd3f8-46de-4402-9255-403987ed3da7.png", "c07de065-b99b-4e33-81c6-c05055b34052.png"].map((src, i) => (
+                                        <div key={i} className="snap-center shrink-0 w-64 md:w-auto bg-cream rounded-[2rem] p-6 aspect-square flex items-center justify-center card-hover">
+                                            <img src={`${ASSET}${src}`} alt={`公式グッズ ${i + 1}`} className="max-h-full max-w-full object-contain" />
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="text-center mt-10 space-y-3">
+                                    <p className="font-bold">グッズを1つ購入していただくと、<span className="text-brand text-xl">100円</span>が食堂へ寄付されます。</p>
+                                    <a href={LINKS.suzuri} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-ink text-white font-bold py-4 px-8 rounded-full hover:bg-brand transition-colors">
+                                        SUZURIでショップを見る <Icon name="chevron-right" size={18} />
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* ===== よくある質問 ===== */}
+                        <section id="faq" className="py-20 md:py-28">
+                            <div className="max-w-3xl mx-auto px-4">
+                                <SectionTitle label="Q & A" title="よくあるご質問" />
+                                <div className="space-y-3">
+                                    {faqs.map((faq, i) => (
+                                        <details key={i} className="bg-white rounded-2xl border border-cream-deep p-5 md:p-6 group" open={i === 0}>
+                                            <summary className="cursor-pointer font-bold text-lg flex items-start gap-3">
+                                                <span className="text-brand font-black text-xl leading-none pt-0.5">Q.</span>
+                                                <span className="flex-1">{faq.q}</span>
+                                                <Icon name="chevron-down" size={20} className="faq-chevron transition-transform text-ink-soft mt-1" />
+                                            </summary>
+                                            <p className="text-ink-soft leading-relaxed mt-3 pl-8">{faq.a}</p>
+                                        </details>
+                                    ))}
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* ===== 締めの呼びかけ ===== */}
+                        <section id="contact" className="px-4 pb-20">
+                            <div className="max-w-6xl mx-auto bg-brand rounded-[3rem] px-6 py-14 md:p-20 text-center text-white relative overflow-hidden">
+                                <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-lamp/30 blur-3xl"></div>
+                                <div className="relative z-10 space-y-6">
+                                    <div className="flex justify-center -space-x-4">
+                                        {['s7_meal_2.jpg', 's6_day_3.jpg', 's8_menu_2.jpg'].map((src, i) => (
+                                            <img key={src} src={`${PHOTO}${src}`} alt="" className={`w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-4 border-white shadow-lg ${i === 1 ? '-translate-y-2' : ''}`} />
+                                        ))}
+                                    </div>
+                                    <p className="font-hand text-xl text-white/90">see you at the table</p>
+                                    <h2 className="text-3xl md:text-5xl font-black leading-tight">次の第3日曜日、<br />一緒にごはんを食べませんか？</h2>
+                                    <p className="text-white/90">最新情報の確認やご予約は、公式アカウントからお気軽にどうぞ。</p>
+                                    <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+                                        <a href={LINKS.line} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-white text-[#06A847] font-black py-4 px-8 rounded-full shadow-lg">
+                                            <Icon name="message-circle" size={20} />LINEオープンチャット
+                                        </a>
+                                        <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-ink text-white font-black py-4 px-8 rounded-full">
+                                            <Icon name="instagram" size={20} />Instagramでお問い合わせ
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </main>
 
-                    <footer className="mt-20 py-12 text-center text-gray-400 text-sm border-t border-orange-100/50">
-                        <div className="flex justify-center items-center gap-2 mb-4 opacity-50">
-                             <Icon name="utensils" size={16} />
+                    <footer className="bg-ink text-white/80 py-12 px-4">
+                        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between gap-8">
+                            <div>
+                                <p className="font-black text-white text-xl mb-2">みらいごはん食堂</p>
+                                <p className="text-sm">山口県防府市佐野152-1 ケアハウスあいおい苑 1階</p>
+                                <p className="text-sm">原則 毎月第3日曜日 開催</p>
+                            </div>
+                            <nav className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm font-bold">
+                                {navItems.map(item => <a key={item.href} href={item.href} className="hover:text-brand">{item.label}</a>)}
+                            </nav>
                         </div>
-                        <p className="font-bold text-gray-500 text-base mb-2">みらいごはん食堂</p>
-                        <p>山口県防府市佐野152-1 ケアハウスあいおい苑 1階</p>
-                        <p className="mt-8 text-xs font-bold tracking-widest opacity-40">&copy; {new Date().getFullYear()} MIRAIGOHAN SHOKUDO</p>
+                        <p className="max-w-6xl mx-auto mt-10 text-xs tracking-widest text-white/40">&copy; {new Date().getFullYear()} MIRAIGOHAN SHOKUDO</p>
                     </footer>
                 </div>
             );
